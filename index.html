@@ -517,6 +517,16 @@
               <li><b>批量重命名</b>：点击工具栏上的 <b>"批量重命名"</b>，DMS 会为当前文件夹里的每份文档生成一个新文件名——格式为"日期+地点前 10 个字符+原文件名"（例如 <span class="mono">20260815旧金山-合同.pdf</span>），日期和地点分别取自文档自身的日期与位置元数据；确认预览列表无误后一次性完成改名，磁盘上的实际文件名也会同步更新。</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>5.8 到期日与"日程"颜色预警</h3>
+            <p>可以给任意一份文档单独设置一个到期日（比如证件有效期、保修截止日、续费日期），到期临近时自动用颜色提醒，不用自己记日子。</p>
+            <ol class="steps">
+              <li>在文档卡片上点击 <b>"到期日"</b> 按钮，选择日期后保存（留空并保存可以清除已设置的到期日）。</li>
+              <li>点击顶部工具栏的 <b>"日程"</b> 按钮，开启颜色预警模式：所有设置了到期日的文档、以及包含这些文档的文件夹，都会按紧急程度自动变色——<b>1 天内到期或已逾期标红</b>，<b>1 周内标黄</b>，<b>2 周内标蓝</b>；工具栏上也会同步显示这三种颜色对应的图例。</li>
+              <li>"日程"模式开启的同时，会自动弹出一份 <b>"临近到期文档"</b> 清单，按紧急程度列出所有 2 周内到期的文档、它们所在的文件夹路径和具体到期日，点击其中任意一行即可直接打开对应文档；清单是一个独立的浮窗，关闭后仍可随时通过再次点击"日程"按钮重新打开。</li>
+            </ol>
+          </div>
         </div>
       </section>
 
@@ -1328,6 +1338,16 @@
               <li><b>Previous / next</b>: with a document open in the preview window, click the arrows on either side of it, or just press the left/right arrow keys, to step through the current folder's documents without closing and reopening the preview each time.</li>
               <li><b>Batch rename</b>: click <b>"Batch rename"</b> in the toolbar to generate a new filename for every document in the current folder — in the form "date + first 10 characters of location + original name" (e.g. <span class="mono">20260815SanFrancisco-contract.pdf</span>), using each document's own date and location metadata. Review the preview list, confirm, and every file is renamed at once — including the actual file on disk.</li>
             </ul>
+          </div>
+
+          <div class="sub">
+            <h3>5.8 Due dates &amp; "Schedule" color warnings</h3>
+            <p>Set a due date on any individual document — a permit's expiry, a warranty deadline, a renewal date — and DMS warns you with color as it approaches, so you don't have to track the date yourself.</p>
+            <ol class="steps">
+              <li>Click <b>"Due date"</b> on a document's card, pick a date, and save (leave it blank and save to clear an existing due date).</li>
+              <li>Click <b>"Schedule"</b> in the top toolbar to turn on color warnings: every document with a due date, and every folder containing one, is automatically color-coded by urgency — <b>red for due within 1 day or overdue</b>, <b>yellow for within 1 week</b>, <b>blue for within 2 weeks</b> — with a matching color legend shown right in the toolbar.</li>
+              <li>Turning on Schedule mode also opens a <b>"Documents due soon"</b> list, showing every document due within 2 weeks ranked by urgency, along with its folder path and exact due date — click any row to open that document directly. It's a standalone popup you can close and reopen anytime by clicking "Schedule" again.</li>
+            </ol>
           </div>
         </div>
       </section>
