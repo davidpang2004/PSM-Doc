@@ -455,6 +455,15 @@
             <h3>4.8 重复文件</h3>
             <p>上传时 DMS 会自动检测内容完全相同的文件；如果发现重复，会提示您选择：跳过、把它链接到当前文件夹（不占用额外磁盘空间），或者仍然作为新文件上传。</p>
           </div>
+
+          <div class="sub">
+            <h3>4.9 自动识别文档日期</h3>
+            <p>PDF 等文档上传后，DMS 会自动扫描文档首页的文字，尝试识别出这份文档自己的日期（比如报告日期、签发日期），省得您每份都手动填写。识别时会优先寻找带明确标签的日期（如"签发日期""检验日期""Issue Date"等），找不到时才退而使用文档里第一个看起来像日期的文字。</p>
+            <div class="callout warn">
+              <span class="callout-label">务必人工核对</span>
+              如果一份文档里同时出现多个日期（比如出生日期、签发日期、有效期），自动识别未必总能挑中您真正想要的那一个。自动识别出的日期会用黄色提示标出、并注明"根据文档内容中的'……'自动识别"，在您确认或修改之前会一直保持这个提示；点击文档卡片上的"日期"按钮即可核对并保存正确的日期。
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1283,6 +1292,15 @@
           <div class="sub">
             <h3>4.8 Duplicate files</h3>
             <p>On upload, DMS automatically checks for files with identical content already in the library. If it finds a match, it asks whether to skip, link the existing file into this folder instead (no extra disk space used), or upload it anyway as a new file.</p>
+          </div>
+
+          <div class="sub">
+            <h3>4.9 Auto-detected document date</h3>
+            <p>Once a PDF or similar document is uploaded, DMS automatically scans the text on its first page for the document's own date (a report date, an issue date), so you don't have to type one in by hand for every file. It looks first for a date that follows a recognized label (like "Issue Date", "签发日期", "Inspection Date"), and only falls back to the first date-shaped text anywhere in the document if no such label is found.</p>
+            <div class="callout warn">
+              <span class="callout-label">Always double-check it</span>
+              If a document contains more than one date — a birth date, an issue date, an expiry date — the auto-detected one isn't guaranteed to be the one you actually want. An auto-detected date is flagged in amber, noting it was "auto-detected from '...' in the document's own text," and keeps that flag until you confirm or correct it — click "Date" on the document's card to check and save the right one.
+            </div>
           </div>
         </div>
       </section>
