@@ -1015,7 +1015,7 @@
           <div class="faq-a">常见原因：Gmail 未使用"应用专用密码"（用的是账户登录密码）；服务商的 SMTP 服务未开启（QQ、163 邮箱需要先在网页版里手动开启）；公司网络防火墙屏蔽了 587 或 465 端口，需联系网络管理员。</div>
 
           <div class="faq-q">文档可以在多台电脑上共享使用吗？</div>
-          <div class="faq-a">可以。把存储路径设置到一个共享网络磁盘，或云同步文件夹（如 OneDrive、Dropbox；Mac 上请避开 iCloud Drive，见第 1.3 节），多台电脑上的 DMS 都指向同一路径即可共享数据。但请注意不要在两台电脑上同时编辑同一份文档，以免产生冲突，建议按文件夹分工使用。</div>
+          <div class="faq-a">可以。把存储路径设置到一个共享网络位置即可，比如家用/办公室的 NAS 网络存储盒子（映射为网络磁盘，例如 <span class="mono">Z:\photo</span>），或云同步文件夹（如 OneDrive、Dropbox；Mac 上请避开 iCloud Drive，见第 1.3 节）——多台电脑上的 DMS 都指向同一路径即可共享数据，但一般同一时间只有一台电脑能联接读写，也请不要在两台电脑上同时编辑同一份文档，以免产生冲突，建议按文件夹分工使用。如果人不在家、需要从外部访问家里的 NAS，得依靠 NAS 自带的 VPN 功能，或额外用 Tailscale、WireGuard 之类的工具打通网络——DMS 本身不提供联网穿透能力，只负责读写您指定路径下的文件。如果需要真正意义上多人同时读写（而不是错开时间共享），技术上可行，但目前不作为通用产品功能提供，有此需求可以联系开发者另行商谈。</div>
 
           <div class="faq-q">Windows 上双击 DMS.exe 提示"Windows 已保护你的电脑"（SmartScreen 警告）怎么办？</div>
           <div class="faq-a">这是因为 DMS.exe 是新生成的可执行文件，还没有向微软付费购买"数字签名认证"，Windows 默认会拦截未知来源的新程序以保护用户，这不代表程序有问题。两种处理方式：<br><br>
@@ -1027,7 +1027,7 @@
           <div class="faq-a">支持 PDF、JPG、JPEG、PNG、HEIC、TIFF、GIF、WEBP、BMP（图片格式），以及 TXT、CSV 等文本文件。原则上任何格式的文件都可以上传并保存，但页面内直接预览功能仅支持以上列出的格式，其他格式可以下载后用对应软件打开。</div>
 
           <div class="faq-q">DMS.app 和 DMS.exe 有什么区别？只是分别对应 Mac 和 Windows 吗？</div>
-          <div class="faq-a">是的，两者功能完全相同，分别是打包给 Mac 和 Windows 用户的可执行程序，双击即可运行，不需要额外安装 Python 或任何依赖库。</div>
+          <div class="faq-a">是的，两者功能完全相同，分别是打包给 Mac 和 Windows 用户的可执行程序，双击即可运行，不需要额外安装 Python 或任何依赖库——唯一的例外是人脸识别功能（详见第 10.4 节）：其底层识别引擎体积较大，没有打包进安装包，需要另外单独安装，应用内会引导您完成整个过程。</div>
         </div>
       </section>
 
@@ -1857,7 +1857,7 @@
           <div class="faq-a">Common causes: Gmail without an "App Password" (using the regular account password instead); a provider's SMTP access isn't turned on (QQ Mail and 163 both require enabling it manually in their web interface first); or a company firewall blocking ports 587/465 — contact your network admin in that case.</div>
 
           <div class="faq-q">Can documents be shared across multiple computers?</div>
-          <div class="faq-a">Yes. Point the storage path at a shared network drive, or a cloud-synced folder (OneDrive, Dropbox — avoid iCloud Drive on Mac, see Section 1.3), and every computer's DMS pointed at that same path shares the data. Just avoid editing the same document from two computers at the same time to prevent conflicts — dividing work by folder is the safest approach.</div>
+          <div class="faq-a">Yes. Point the storage path at a shared network location — a home or office NAS box mapped as a network drive (e.g. <span class="mono">Z:\photo</span>), or a cloud-synced folder (OneDrive, Dropbox — avoid iCloud Drive on Mac, see Section 1.3) — and every computer's DMS pointed at that same path shares the data. Typically only one computer can be connected at a time either way, and you should still avoid editing the same document from two computers at once to prevent conflicts — dividing work by folder is the safest approach. If you're away from home and need to reach your NAS remotely, that requires the NAS's own built-in VPN, or a separate tool like Tailscale or WireGuard to bridge the connection — DMS itself doesn't provide any network tunneling, it just reads and writes files at whatever path you give it. Genuinely simultaneous multi-user read/write (rather than time-sharing one path) is technically possible, but isn't offered as a standard product feature right now — reach out to the developer directly if you need that.</div>
 
           <div class="faq-q">Windows says "Windows protected your PC" (SmartScreen) when I double-click DMS.exe — what now?</div>
           <div class="faq-a">This happens because DMS.exe is a newly-built executable that hasn't been paid-certified with a digital signature from Microsoft — Windows blocks unrecognized new programs by default to protect users; it doesn't mean anything is wrong with it. Two ways around it:<br><br>
@@ -1869,7 +1869,7 @@
           <div class="faq-a">PDF, JPG, JPEG, PNG, HEIC, TIFF, GIF, WEBP, and BMP for images, plus text formats like TXT and CSV. In principle any file type can be uploaded and stored, but in-browser preview is limited to the formats listed above — anything else can still be downloaded and opened with the matching application.</div>
 
           <div class="faq-q">What's the difference between DMS.app and DMS.exe — are they just the Mac and Windows versions?</div>
-          <div class="faq-a">Exactly — they're functionally identical, just packaged executables for Mac and Windows respectively. Double-click to run; no separate Python install or dependencies needed.</div>
+          <div class="faq-a">Exactly — they're functionally identical, just packaged executables for Mac and Windows respectively. Double-click to run; no separate Python install or dependencies needed — except for face recognition (see Section 10.4): its underlying engine is too large to bundle into the installer, so it's installed separately, with DMS guiding you through the whole process in-app.</div>
         </div>
       </section>
 
