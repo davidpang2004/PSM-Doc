@@ -495,7 +495,11 @@
 
           <div class="sub">
             <h3>5.4 合并为一份 PDF</h3>
-            <p>可以把选中的多份扫描件或文件快速合并为一个 PDF，合并后的文件会归档到您指定的文件夹里；原始文件仍安全保留、不受影响。快速合并会跳过正式封面页，仅靠每份文档各自的书签导航；即便原始页面是横版，也会自动统一转正为竖版。</p>
+            <p>可以把选中的多份扫描件或文件快速合并为一个 PDF，合并后的文件会归档到您指定的文件夹里。含有照片时，每张照片会先被压缩（长边不超过 900 像素、JPEG 85% 品质）再嵌入，肉眼几乎看不出画质差别，但整份文件体积能缩小到原来的百分之一左右——例如一份含 136 张照片的合同书，PDF 体积可以从 2.3 GB 降到约 18 MB。快速合并会跳过正式封面页，仅靠每份文档各自的书签导航；即便原始页面是横版，也会自动统一转正为竖版。</p>
+            <div class="callout warn">
+              <span class="callout-label">参与合并的原始文档会被移出当前文件夹</span>
+              合并完成后，被合并的原始文档会从当前文件夹中移除，并移入"Not Show in Tree"回收文件夹（不会被立即彻底删除，可以去那里找回或永久清除）。如果希望合集之外还保留一份可单独查看的原始文档，建议改用第 11 章的"数据手册"功能——它会生成同样的合集，但不会动原始文档。
+            </div>
           </div>
 
           <div class="sub">
@@ -1320,7 +1324,11 @@
 
           <div class="sub">
             <h3>5.4 Combine into one PDF</h3>
-            <p>Merge several selected scans or files into a single PDF, filed back into a folder you choose; the originals stay untouched in storage. Quick merges skip the formal cover page — per-document bookmarks alone handle navigation — and any landscape page is automatically rotated to portrait so the whole file stays consistently oriented.</p>
+            <p>Merge several selected scans or files into a single PDF, filed back into a folder you choose. Any photos among them are compressed first — longest edge capped at 900px, JPEG quality 85% — before being embedded, with no visible quality loss to the eye but the whole file shrinking to roughly a hundredth of its original size: a contract bundling 136 photos, for example, can go from 2.3GB down to about 18MB as a PDF. Quick merges skip the formal cover page — per-document bookmarks alone handle navigation — and any landscape page is automatically rotated to portrait so the whole file stays consistently oriented.</p>
+            <div class="callout warn">
+              <span class="callout-label">The originals are removed from the current folder</span>
+              Once merged, the original documents are removed from the current folder and moved into the "Not Show in Tree" recycle folder (not immediately erased — you can find or permanently clear them there). If you want the originals to also stay individually viewable elsewhere, use Chapter 11's "Data book" feature instead — it produces the same kind of combined PDF without touching the originals.
+            </div>
           </div>
 
           <div class="sub">
