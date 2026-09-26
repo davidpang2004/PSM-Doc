@@ -208,10 +208,10 @@
       <p class="tb-sub">DMS 是一款运行在您自己电脑上的文档与照片管理系统。它把您硬盘上的真实文件，组织成一棵可以随意展开、搜索的文件夹树，全部通过浏览器操作，不上传到任何云端服务器。本手册假定您此前从未使用过 DMS，会从"如何安装"开始，逐步讲到每一项功能的具体点击步骤。</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-09-12</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-09-26</div></div>
       <div class="tb-field"><div class="tb-field-label disp">适用对象</div><div class="tb-field-value mono">完全没用过 DMS 的新用户</div></div>
       <div class="tb-field"><div class="tb-field-label disp">支持平台</div><div class="tb-field-value mono">macOS · Windows</div></div>
-      <div class="tb-field"><div class="tb-field-label disp">章节</div><div class="tb-field-value mono">01–16 + 常见问题</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">章节</div><div class="tb-field-value mono">01–17 + 常见问题</div></div>
     </div>
     <div class="dl-row">
       <a class="dl-btn" href="https://github.com/davidpang2004/PMS-CN-Releases/releases/download/DMS-260828-Mac/DMS-260828-Mac.zip"> Mac 版下载 <span class="sub">DMS-260828-Mac.zip</span></a>
@@ -237,12 +237,13 @@
       <a href="#ai-zh"><span class="num mono">08</span> AI 辅助（可选）</a>
       <a href="#trends-zh"><span class="num mono">09</span> 趋势图表</a>
       <a href="#photos-zh"><span class="num mono">10</span> 照片库与人脸识别</a>
-      <a href="#databook-zh"><span class="num mono">11</span> 生成数据手册</a>
+      <a href="#databook-zh"><span class="num mono">11</span> 生成数据手册（PDF/Word）</a>
       <a href="#share-zh"><span class="num mono">12</span> 分享文档</a>
       <a href="#mobile-zh"><span class="num mono">13</span> 手机与远程访问</a>
       <a href="#backup-zh"><span class="num mono">14</span> 备份、导出与导入</a>
       <a href="#security-zh"><span class="num mono">15</span> 安全与密码保护</a>
       <a href="#settings-zh"><span class="num mono">16</span> 其他设置</a>
+      <a href="#multiproject-zh"><span class="num mono">17</span> 切换、合并与多开项目</a>
       <a href="#faq-zh"><span class="num mono">＋</span> 常见问题</a>
     </nav>
 
@@ -272,7 +273,7 @@
             </ol>
             <div class="callout tip">
               <span class="callout-label">提示</span>
-              这个小状态窗口右下角有一个 <b>"Quit DMS"</b> 按钮，用来彻底退出程序；左下角的 <b>"Remote Upload"</b> 按钮会在第 13 章"手机与远程访问"中用到，现在可以先不管它。
+              这个小状态窗口右下角有一个 <b>"Quit DMS"</b> 按钮，用来彻底退出程序；左下角的 <b>"Remote Upload"</b> 按钮会在第 13 章"手机与远程访问"中用到，现在可以先不管它。双击 DMS.exe 如果没反应、或 Windows 弹出安全警告，见下方 FAQ 中的"Windows 已保护你的电脑"一条。
             </div>
           </div>
 
@@ -326,6 +327,10 @@
               <li><b>左侧</b>：文件夹树，可展开/折叠，右键点击任意文件夹弹出操作菜单。树的正上方还有一排快捷按钮：新建文件夹、上传文档、重命名、删除、文本树、趋势图。</li>
               <li><b>右侧</b>：选中文件夹里的文档列表。</li>
             </ul>
+            <div class="callout tip">
+              <span class="callout-label">几乎所有输入框都能语音输入</span>
+              文件夹/文档名称、序列号、登录信息、描述、搜索框、AI 提问框……几乎每一处文字输入框旁边都有一个麦克风图标，点一下对着话筒说话，识别结果就会自动追加到光标处，再点一下停止；可以在"中文"和"EN"之间切换识别语言，完全在浏览器里完成，不需要配置任何 AI Key（详见 4.5 节）。
+            </div>
           </div>
         </div>
       </section>
@@ -349,11 +354,11 @@
             <h3>3.2 重命名与删除</h3>
             <ol class="steps">
               <li><b>重命名</b>：右键文件夹 →"重命名"，或双击文件夹名称，改好后按 Enter。磁盘上的实际文件夹会同步改名。</li>
-              <li><b>删除</b>：右键文件夹 →"删除文件夹"，确认后该文件夹及其下所有子文件夹和文档都会被删除。</li>
+              <li><b>删除</b>：右键文件夹 →"删除文件夹"，确认后该文件夹从树里消失，其中的文档不会立即从磁盘抹除，而是被移动到一个叫 <span class="mono">Not Show in Tree</span> 的隐藏文件夹里暂存。</li>
             </ol>
-            <div class="callout warn">
-              <span class="callout-label">请谨慎操作</span>
-              删除文件夹会同时删除磁盘上的实际文件，且不经过回收站，无法直接撤销。重要数据建议先按第 14 章导出一份备份，再执行删除。
+            <div class="callout note">
+              <span class="callout-label">想找回被删文件夹里的文档？</span>
+              在左侧树的底部找到 <span class="mono">Not Show in Tree</span> 节点展开，里面的文档可以重新"链接"或移动回任意文件夹（见 5.3 节）；只有在这个隐藏节点里再次点删除，文件才会真正从磁盘上永久清除、无法撤销。但文件夹被删除后就不在树里了，这个动作本身不会撤销——如果只是想临时挪走、以后可能还要用，建议改用拖拽把它移到别处，而不是删除。
             </div>
           </div>
 
@@ -381,12 +386,22 @@
 
           <div class="sub">
             <h3>3.5 从一份清单批量建立整棵文件夹树</h3>
-            <p>如果您已经有一份文件夹结构的清单（比如项目的资料分类目录），不需要一个个手动新建——可以用缩进文本一次性批量导入。</p>
+            <p>如果您已经有一份文件夹结构的清单（比如物料清单 BOM、组织架构表），不需要一个个手动新建——可以用一份简单的 CSV（逗号分隔）文本一次性批量导入。</p>
+            <table class="kv">
+              <tr><th>第 1 列</th><td>文件夹名。必填，这一行要创建的文件夹叫什么。</td></tr>
+              <tr><th>第 2 列</th><td>父文件夹名，即这个文件夹挂在哪个已出现过的文件夹下面；留空表示挂在根节点下。文件的第一行本身就是根文件夹，这一列必须留空。</td></tr>
+              <tr><th>第 3 列</th><td>说明文字，可选，整列都可以省略。填写时会成为该文件夹的初始描述。</td></tr>
+            </table>
             <ol class="steps">
               <li>点击顶部工具栏的 <b>"项目"</b> → <b>"从层级文件创建文件夹树"</b>。</li>
-              <li>在对话框中粘贴层级定义：每行一个文件夹名，用缩进（例如每级 2 个空格）表示层级关系。同一部件名允许在不同的上级下重复出现（例如物料清单里同名的螺栓分别属于不同总成）。</li>
-              <li>点击"预览"检查解析结果，确认无误后点击"导入"。</li>
+              <li>粘贴或上传您的 CSV 文本，例如：<br><span class="mono">总装配<br>泵壳组件,总装配<br>转子组件,总装配<br>螺栓,转子组件</span></li>
+              <li>点击"验证"检查解析结果。如果同一个文件夹名在文件里重复出现（例如不同总成下各有一个同名的"螺栓"），默认会报错；勾选"自动为重复文件夹名添加编号"后重新验证，DMS 会把这些重名文件夹依次编号为"螺栓 01""螺栓 02"……全部导入成功。</li>
+              <li>确认预览无误后点击"创建节点树"，所有文件夹立即出现在树里。</li>
             </ol>
+            <div class="callout tip">
+              <span class="callout-label">从物料清单软件导出？</span>
+              带有"Level 1"这类分级标题行、或第一行是"文件夹名, 父文件夹名, 说明"这样的列标题行，DMS 都会自动识别并跳过，不用手动删除。
+            </div>
           </div>
         </div>
       </section>
@@ -420,8 +435,21 @@
           </div>
 
           <div class="sub">
-            <h3>4.4 保持文件夹结构整体上传</h3>
-            <p>如果您电脑上已经有一整套按文件夹分类好的资料（比如一个项目的完整目录），上传时可以选择原样保留其子文件夹结构，而不是让 DMS 按日期重新打散归类。</p>
+            <h3>4.4 一次上传整个文件夹，三种归档方式任选</h3>
+            <p>如果您电脑上已经有一整套按文件夹分类好的资料（比如一个项目的完整目录、或手机相册导出的整个相册文件夹），不用一个个拖文件，可以整个文件夹一次性上传。</p>
+            <ol class="steps">
+              <li>选中目标文件夹后，点击工具栏的 <b>"上传文件夹"</b>，弹出"上传多个文件夹"对话框。</li>
+              <li>点击"+ 添加文件夹"选择电脑上的一个文件夹；可以重复这一步一次排进多个文件夹，逐个列在上方，点右侧的 × 可以移除。</li>
+              <li>三种归档方式二选一：
+                <ul class="plain">
+                  <li><b>按年/月文件夹上传</b>（默认）：每个所选文件夹（含其子文件夹）里的所有文件都按拍摄/归档日期自动归入"年/月"两级子文件夹，不保留原来的子文件夹结构——最适合相册这类"只关心日期、不关心原来怎么分类"的资料。</li>
+                  <li><b>按来源文件夹结构上传</b>：子文件夹原样在此处重建，不按日期生成年/月文件夹——适合已经整理好、想保留原目录结构的资料。</li>
+                  <li><b>在当前文件夹下重建所选文件夹</b>：与上一种的区别是，所选文件夹本身也会变成当前文件夹下的一个新子文件夹（前两种只上传其内容，不建这一层），整棵结构原样落地，本地磁盘上也会同步建好对应目录。</li>
+                </ul>
+              </li>
+              <li>如果需要，在"在文件名中添加文字（可选）"里填一段文字——有日期时插在日期后面，没有日期时加在文件名最前面；旁边也有麦克风按钮可以直接口述。留空则不加任何文字。</li>
+              <li>点击右下角"上传"完成。</li>
+            </ol>
           </div>
 
           <div class="sub">
@@ -447,12 +475,16 @@
 
           <div class="sub">
             <h3>4.7 ZIP 批量导入</h3>
-            <p>如果您有大量文档需要上传，并且文件名中已经包含目标文件夹的名称或编号作为前缀（例如 <span class="mono">A-001_技术规格书.pdf</span> 对应编号为 A-001 的文件夹），可以打包成一个 ZIP，一次性自动分配。</p>
+            <p>如果您有大量文档需要上传，并且文件名里已经能看出该归到哪个文件夹，可以按命名规则打包成一个 ZIP，一次性自动分配，文件夹必须已经在树里存在（不会像 3.5 节的层级导入那样顺带新建文件夹）。</p>
             <ol class="steps">
-              <li>点击 <b>"项目"</b> → <b>"从 ZIP 批量导入文档"</b>。</li>
-              <li>拖入 ZIP 文件，系统会显示每个文件将被分配到哪个文件夹、哪些未能匹配。</li>
-              <li>确认无误后完成导入。</li>
+              <li>把每个文件按 <span class="mono">文件夹名#说明.pdf</span> 的格式命名（例如 <span class="mono">房屋保险#2026年保单.pdf</span> 对应名为"房屋保险"的文件夹，# 号后面的部分可以随意填写），打包成一个 ZIP。</li>
+              <li>点击 <b>"项目"</b> → <b>"从 ZIP 批量导入文档"</b>，选择该 ZIP 文件。</li>
+              <li>系统会显示每个文件将被分配到哪个文件夹、哪些因为名称对不上而未能匹配。</li>
             </ol>
+            <div class="callout tip">
+              <span class="callout-label">树里有同名文件夹怎么办？</span>
+              如果同一个文件夹名在树里不止一处（比如"转子组件"和"泵壳组件"下各有一个同名的"螺栓"），只用文件夹名会匹配到排在前面的那个。这时可以在 # 号前改用一段"/"分隔的路径来精确指定，比如 <span class="mono">转子组件/螺栓#清单.pdf</span>，就能准确落到"转子组件"下的那个"螺栓"，而不是另一个同名文件夹。
+            </div>
           </div>
 
           <div class="sub">
@@ -467,6 +499,25 @@
               <span class="callout-label">务必人工核对</span>
               如果一份文档里同时出现多个日期（比如出生日期、签发日期、有效期），自动识别未必总能挑中您真正想要的那一个。自动识别出的日期会用黄色提示标出、并注明"根据文档内容中的'……'自动识别"，在您确认或修改之前会一直保持这个提示；点击文档卡片上的"日期"按钮即可核对并保存正确的日期。
             </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.10 批量转换为 PDF</h3>
+            <p>需要把一批照片或已有的 PDF 统一转成规范命名的独立 PDF 文件时，不用逐份另存。</p>
+            <ol class="steps">
+              <li>勾选要转换的图片和/或 PDF 文档，点击工具栏的 <b>"转换为 PDF"</b>。</li>
+              <li>弹出的对话框会列出已勾选的文档，确认后点击"将 N 份文档转换为 PDF"。</li>
+              <li>每份文档被分别转换为独立的 PDF（能确定日期时文件名以"YYYY-MM-DD-"开头），原始文件则移入 <span class="mono">Not Show in Tree</span> 回收文件夹（见 3.2 节，可以找回）。</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>4.11 磁盘文件名与结构快照</h3>
+            <p>这两点不需要手动操作，但了解一下有助于日后用系统自带的文件管理器查看文件、或排查问题：</p>
+            <ul class="plain">
+              <li>硬盘上保存的实际文件名是"名字在前、编号在后"（例如 <span class="mono">体检报告+DOC-20260920-xxx.pdf</span>），在 Finder / 资源管理器里翻文件夹时一眼就能看出是什么文档，不用先点开才知道。</li>
+              <li>每次修改项目的文件夹结构（增删文件夹、移动、批量操作等）之前，DMS 都会自动先保存一份当时的快照；万一某次改动把结构弄乱了，可以借助该快照恢复——这是一层后台自动运行的安全网，正常使用不会看到任何界面。</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -532,6 +583,7 @@
               <li><b>排序</b>：文档区域上方的"排序"下拉菜单可按名称（A–Z）、文档日期（元数据）、到期日（元数据）或修改日期排列当前文件夹里的文档。</li>
               <li><b>上一份 / 下一份</b>：预览窗口打开一份文档时，可以点击窗口两侧的箭头，或直接按键盘左右方向键，在当前文件夹的文档之间快速切换，不用每次都关掉预览重新点选。</li>
               <li><b>批量重命名</b>：点击工具栏上的 <b>"批量重命名"</b>，DMS 会为当前文件夹里的每份文档生成一个新文件名——格式为"日期+地点前 10 个字符+原文件名"（例如 <span class="mono">20260815旧金山-合同.pdf</span>），日期和地点分别取自文档自身的日期与位置元数据；确认预览列表无误后一次性完成改名，磁盘上的实际文件名也会同步更新。</li>
+              <li><b>批量用 AI 提取参数</b>：想给一批文档统一填同一个关键参数，不用逐份打开手动录入——点击工具栏上的 <b>"AI 填参数"</b>，勾选文档后选一个已有或新建的参数名，DMS 会逐份读取每份文档的页面图像来识别对应数值，结果先列出来供确认，点"应用"才会真正写入（用法细节见 7.4 节，需先按第 8 章配置好 AI）。</li>
             </ul>
           </div>
 
@@ -543,6 +595,15 @@
               <li>点击顶部工具栏的 <b>"日程"</b> 按钮，开启颜色预警模式：所有设置了到期日的文档、以及包含这些文档的文件夹，都会按紧急程度自动变色——<b>1 天内到期或已逾期标红</b>，<b>1 周内标黄</b>，<b>2 周内标蓝</b>；工具栏上也会同步显示这三种颜色对应的图例。</li>
               <li>"日程"模式开启的同时，会自动弹出一份 <b>"临近到期文档"</b> 清单，按紧急程度列出所有 2 周内到期的文档、它们所在的文件夹路径和具体到期日，点击其中任意一行即可直接打开对应文档；清单是一个独立的浮窗，关闭后仍可随时通过再次点击"日程"按钮重新打开。</li>
             </ol>
+          </div>
+
+          <div class="sub">
+            <h3>5.9 图标视图弹出成独立窗口</h3>
+            <p>5.7 节的"图标视图"还可以点击"弹出"按钮，变成一个独立的浏览器窗口，方便拖到另一台显示器上单独摆着，一边看图一边操作树形视图的其他部分。弹出的窗口里，多选文档后除了 5.2 节的批量下载，还可以：</p>
+            <ul class="plain">
+              <li><b>批量删除</b>：勾选多份文档后一次性删除（进入 <span class="mono">Not Show in Tree</span> 回收文件夹，见 3.2 节，可以找回），不用一份一份点。</li>
+              <li><b>批量加前缀</b>：给勾选的一批文件名统一加上一段前缀文字（比如在日期后面补一句说明），和 5.7 节按"日期+地点"生成新文件名的批量重命名是两种不同的改名方式，各有用途。</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -573,6 +634,7 @@
               <li>输入编号、文件名、描述文字或元数据关键词，结果会实时过滤显示。</li>
             </ol>
             <p>搜索范围包括文件名、OCR 识别出的全文，以及您为文档添加的所有元数据字段（见第 7 章）。系统还会自动标记出可能不可靠的乱码 OCR 结果，避免它们干扰搜索。</p>
+            <p>输入多个词（用空格分隔）时，搜索框旁的"多词匹配"决定它们怎么组合：<b>全部包含 (AND)</b>（默认，必须同时包含每一个词才算匹配）、<b>任一包含 (OR)</b>（包含其中任意一个词就算匹配，比如同时输入"发票 收据 账单"这类近义词时很好用）、<b>整句匹配</b>（不拆分成单独的词，把输入框里的全部内容当一句话原样精确匹配，适合确定就要找某一句原文的时候）。</p>
           </div>
         </div>
       </section>
@@ -623,6 +685,7 @@
               <span class="callout-label">表格类文档小技巧</span>
               勾选"仅同行提取"，DMS 只会匹配与字段名处在同一行的内容，更适合表格；不勾选则在全文范围内搜索。
             </div>
+            <p>以上是打开单份文档、逐份提取的用法。如果要给一整批文档统一填同一个参数，不用一份一份打开——在文档列表工具栏点 <b>"AI 填参数"</b>，勾选要处理的文档，选一个参数名后点"开始提取"，DMS 会逐份读取每份文档的页面图像来识别该参数的值（不要求页面上有可选中的文字层，扫描件、照片同样有效），结果列出来供确认，点"应用"才会写入（见 5.7 节；这个批量流程本身用的就是 8.2 节的 AI 图像识别能力，需要先按第 8 章配置好 AI）。</p>
           </div>
 
           <div class="sub">
@@ -670,6 +733,7 @@
               <li>选择使用 Gemini 还是 DeepSeek，点击提问。AI 会自动跨文档查找答案，并标注具体来自哪一份文档，方便您核实原文。</li>
             </ol>
             <p>也可以只把范围限定在某一个文件夹（勾选"仅限此节点及子节点"），而不是整个项目。</p>
+            <p>如果只想针对正在看的这一份文档提问，不用切到"搜索"标签页——直接在文档预览窗口顶部点 <b>"提问 AI"</b>，右侧会展开一个提问面板，AI 依据这份文档已提取的文字、描述和关键参数来回答；同一面板里也能对这份文档的描述做"用 AI 整理润色"（用法与 4.5 节完全一致）。</p>
           </div>
 
           <div class="sub">
@@ -809,23 +873,41 @@
 
       <!-- 11 -->
       <section class="chapter" id="databook-zh">
-        <div class="chapter-head"><span class="chapter-num">11</span><h2 class="chapter-title disp">生成数据手册（合并 PDF 手册）</h2></div>
+        <div class="chapter-head"><span class="chapter-num">11</span><h2 class="chapter-title disp">生成数据手册（PDF 或 Word）</h2></div>
         <div class="chapter-body">
-          <p class="lead">"数据手册"功能可以把文件夹树里任意选中的一批文档，一键合并成一份带封面、目录和分节书签的正式 PDF 手册，非常适合作为交付资料或存档打印。</p>
-          <ol class="steps">
-            <li>切换到顶部 <b>"数据手册"</b> 标签页。</li>
-            <li>在文档选择器中勾选要合并的文档，可以跨多个文件夹选择。</li>
-            <li>填写手册的标题和副标题（如需要，可以在自动生成的封面之前再插入一张自定义封面）。</li>
-            <li>点击 <b>"生成并下载"</b>，系统会把所有选中文档按文件夹顺序、序列号自动排列成章节结构，合并成一份 PDF。</li>
-          </ol>
-          <ul class="plain">
-            <li>只包含图片的文件夹会自动转换为可打印的 PDF 页面。</li>
-            <li>横版的原始页面会自动旋转为竖版，保证整本手册方向统一。</li>
-            <li>含大量照片时，图片会在嵌入前智能重新压缩，页面观感几乎无损，但整份文件体积可以缩小到原来的百分之一左右。</li>
-          </ul>
-          <div class="callout tip">
-            <span class="callout-label">提示</span>
-            已经生成过一次的选择列表和标题会自动记住，下次打开"数据手册"标签页时可以直接在上次的基础上继续操作。
+          <p class="lead">"数据手册"功能可以把文件夹树里的文档合并成一份带封面、目录和分节书签的正式手册，非常适合作为交付资料或存档打印，有手动选择生成 PDF、按文件夹自动生成 Word 两种模式。</p>
+
+          <div class="sub">
+            <h3>11.1 手动选择文档，生成 PDF</h3>
+            <ol class="steps">
+              <li>切换到顶部 <b>"数据手册"</b> 标签页，选择"手动选择（PDF）"。</li>
+              <li>在文档选择器中勾选要合并的文档，可以跨多个文件夹选择。</li>
+              <li>填写手册的标题和副标题（如需要，可以在自动生成的封面之前再插入一张自定义封面）。</li>
+              <li>点击 <b>"生成并下载"</b>，系统会把所有选中文档按文件夹顺序、序列号自动排列成章节结构，合并成一份 PDF。</li>
+            </ol>
+            <ul class="plain">
+              <li>只包含图片的文件夹会自动转换为可打印的 PDF 页面。</li>
+              <li>横版的原始页面会自动旋转为竖版，保证整本手册方向统一。</li>
+              <li>含大量照片时，图片会在嵌入前智能重新压缩，页面观感几乎无损，但整份文件体积可以缩小到原来的百分之一左右。</li>
+            </ul>
+            <div class="callout tip">
+              <span class="callout-label">提示</span>
+              已经生成过一次的选择列表和标题会自动记住，下次打开"数据手册"标签页时可以直接在上次的基础上继续操作。
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>11.2 按文件夹自动生成 Word 数据手册</h3>
+            <p>与逐份手动勾选不同，这个模式只需选中一个"顶层"文件夹，DMS 会按文件夹结构自动生成章节，得到一份可以在 Word 里继续编辑排版的 .docx 文件——适合提交前还要调整格式、或对方明确要求 Word 而不是 PDF 的场合。</p>
+            <ol class="steps">
+              <li>切换到顶部 <b>"数据手册"</b> 标签页，选择"按文件夹自动生成（Word）"。</li>
+              <li>勾选一个文件夹——它的每个子文件夹（可多级嵌套）都会成为一个章节，章节内文档按文件夹里原有顺序排列，每份文档后面附上它的描述文字。</li>
+              <li>点击生成按钮，DMS 在服务器端生成 .docx 文件，浏览器自动下载。</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">和 PDF 模式的区别</span>
+              两种模式生成的都是全新文件，不会改动文件夹里原有的文档；Word 模式里的表格、标题、正文都是可编辑的原生 Word 内容，不是把 PDF 页面当图片贴进去，方便生成后再手动增删小段文字或调整格式。
+            </div>
           </div>
         </div>
       </section>
@@ -991,11 +1073,53 @@
         <div class="chapter-body">
           <ul class="plain">
             <li><b>下载用户手册 / 设置指南</b>：点击"项目"菜单最下方的"文档下载"区域，可以下载本手册的 .docx 版本、OneDrive 配置指南（中/英文）、Windows 人脸识别安装指南等。</li>
-            <li><b>切换存储路径</b>：点击顶部工具栏的存储路径按钮，可以随时切换到电脑上另一个已有的 DMS 项目文件夹。</li>
+            <li><b>切换存储路径</b>：点击顶部工具栏的存储路径按钮，可以随时切换到电脑上另一个已有的 DMS 项目文件夹（第 17 章还介绍了启动时的项目选择界面、同时多开，以及把另一个项目合并进来）。</li>
             <li><b>语言切换</b>：整个应用界面可随时在顶部一键切换中文/英文，不影响已保存的数据。</li>
-            <li><b>同时打开多个项目</b>：可以同时开启多个 DMS 项目窗口/实例，在不同项目之间快速切换，不需要每次都先关掉一个再打开另一个。</li>
             <li><b>文档数量不再受限</b>：单个项目可保存的文档数量没有上限。</li>
           </ul>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="chapter" id="multiproject-zh">
+        <div class="chapter-head"><span class="chapter-num">17</span><h2 class="chapter-title disp">切换、合并与多开项目</h2></div>
+        <div class="chapter-body">
+          <p class="lead">DMS 里的"项目"就是一个存储路径——一整套独立的文件夹树、文档和设置。现在可以很方便地在多个项目之间切换、同时开着好几个、甚至把两个项目合并成一个。</p>
+
+          <div class="sub">
+            <h3>17.1 启动时选择项目</h3>
+            <p>双击 DMS.app / DMS.exe 打开浏览器后，如果电脑上已经用过 DMS，不会再像第一次那样直接要求设置存储位置，而是先出现一个"选择项目"界面：</p>
+            <ul class="plain">
+              <li><b>继续上次的项目</b>：直接打开上次正常退出前所在的那个项目。</li>
+              <li><b>选择别的项目文件夹</b>：浏览到电脑上另一个已有的 DMS 项目文件夹。</li>
+              <li><b>新建一个全新的空项目</b>：从零开始，不会带入任何示例数据。</li>
+            </ul>
+            <p>只要是通过窗口右下角"Quit DMS"按钮、Cmd+Q、关闭状态窗口等正常方式退出的，DMS 都会记住当时打开的是哪个项目；如果同时开着好几个项目窗口，"上次"记录的是最后一个被正常关闭的那个。</p>
+          </div>
+
+          <div class="sub">
+            <h3>17.2 同时打开多个项目</h3>
+            <p>可以同时开启多个 DMS 项目窗口/实例，各自独立运行、各自登录，互不干扰，不需要每次都先关掉一个再打开另一个。</p>
+            <ol class="steps">
+              <li>点击顶部"项目"菜单里"打开另一个项目"一类的入口，或者直接再运行一次 DMS.app / DMS.exe，在 17.1 节的启动界面里选另一个项目文件夹。</li>
+              <li>DMS 会为新项目单独开一个窗口和一套服务，用不同的本机端口，与已经打开的窗口完全独立。</li>
+              <li>如果对同一个项目文件夹重复发起"打开"，DMS 会直接切换到已经在服务这个项目的窗口，不会重复启动。</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>17.3 合并另一个项目进来</h3>
+            <p>适合两台电脑（或两个人）各自整理了一段时间的资料，现在要拼成一份的场景——把另一个 DMS 项目的文件夹和文档，整体并入当前正在用的这个项目。</p>
+            <ol class="steps">
+              <li>点击顶部"项目"菜单里的"合并项目"。</li>
+              <li>选择要并入的另一个项目的存储文件夹。</li>
+              <li>确认后开始合并：同名文件夹会自动合并到一起，内容完全相同的文档会自动跳过、不会重复导入，其余文档和文件夹正常并入当前项目的树里。</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">合并前建议先备份</span>
+              合并是把另一个项目"拼"进当前项目，操作前建议先按第 14 章导出一份当前项目的完整备份，以防合并结果不是预期的样子。
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1009,7 +1133,7 @@
           <div class="faq-a">可以手动编辑本机的配置文件重置密码。文件位于 Mac 的 <span class="mono">~/.pms_dms_config.json</span> 或 Windows 的 <span class="mono">C:\Users\yourname\.pms_dms_config.json</span>。用文本编辑器打开，把其中 <span class="mono">password_hash</span> 和 <span class="mono">password_salt</span> 两个字段的值都改成空字符串 <span class="mono">""</span>，保存后重启 DMS，密码保护即被移除。（这是应用登录密码，与第 15.2 节的"项目密码"是两回事，项目密码保存在项目文件夹内，同理可用文本编辑器打开项目文件夹里的相应配置文件清空重置。）</div>
 
           <div class="faq-q">误删了文件夹或文档，能恢复吗？</div>
-          <div class="faq-a">删除文档时，只要它还被其他文件夹引用，就只是解除引用，文件本身还在；只有最后一个引用被删除，文件才会移入磁盘上的"Not Show in Tree"文件夹，可以手动去那里找回。但整个文件夹的删除是不可逆的，建议重要操作前先按第 14 章导出一份备份。如果存储路径本身开启了云盘同步（如 OneDrive），也可以尝试通过云盘的版本历史找回。</div>
+          <div class="faq-a">删除文档时，只要它还被其他文件夹引用，就只是解除引用，文件本身还在；只有最后一个引用被删除，文件才会移入磁盘上的"Not Show in Tree"文件夹（见 3.2 节），可以手动去那里找回。删除整个文件夹也是同样的机制：文件夹本身从树里消失，但里面的文档同样先进入"Not Show in Tree"暂存，而不是立刻从磁盘上抹掉——只有在那个隐藏文件夹里再次点删除，才是真正、不可撤销的永久清除。不过文件夹从树上消失这件事本身无法一键撤销，重要结构变动前仍建议先按第 14 章导出一份备份。如果存储路径本身开启了云盘同步（如 OneDrive），也可以尝试通过云盘的版本历史找回。</div>
 
           <div class="faq-q">为什么发邮件提示"SMTP 错误"？</div>
           <div class="faq-a">常见原因：Gmail 未使用"应用专用密码"（用的是账户登录密码）；服务商的 SMTP 服务未开启（QQ、163 邮箱需要先在网页版里手动开启）；公司网络防火墙屏蔽了 587 或 465 端口，需联系网络管理员。</div>
@@ -1033,7 +1157,7 @@
 
       <footer>
         <span>DMS.app — 用户手册</span>
-        <span>面向零基础新用户编写，根据当前版本整理 · 2026-09-12</span>
+        <span>面向零基础新用户编写，根据当前版本整理 · 2026-09-26</span>
       </footer>
 
     </main>
@@ -1051,10 +1175,10 @@
       <p class="tb-sub">DMS is a document and photo management system that runs on your own computer. It organizes the real files on your hard drive into a folder tree you can browse and search, all through your web browser — nothing is uploaded to any cloud server. This manual assumes you have never used DMS before: it starts with "how do I install it" and walks through the exact clicks for every feature.</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-09-12</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-09-26</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Audience</div><div class="tb-field-value mono">First-time DMS users</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Platforms</div><div class="tb-field-value mono">macOS · Windows</div></div>
-      <div class="tb-field"><div class="tb-field-label disp">Chapters</div><div class="tb-field-value mono">01–16 + FAQ</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">Chapters</div><div class="tb-field-value mono">01–17 + FAQ</div></div>
     </div>
     <div class="dl-row">
       <a class="dl-btn" href="https://github.com/davidpang2004/PMS-CN-Releases/releases/download/DMS-260828-Mac/DMS-260828-Mac.zip"> Download for Mac <span class="sub">DMS-260828-Mac.zip</span></a>
@@ -1080,12 +1204,13 @@
       <a href="#ai-en"><span class="num mono">08</span> AI Assistance (Optional)</a>
       <a href="#trends-en"><span class="num mono">09</span> Trend Charts</a>
       <a href="#photos-en"><span class="num mono">10</span> Photos &amp; Face Recognition</a>
-      <a href="#databook-en"><span class="num mono">11</span> Generating a Databook</a>
+      <a href="#databook-en"><span class="num mono">11</span> Generating a Databook (PDF/Word)</a>
       <a href="#share-en"><span class="num mono">12</span> Sharing Documents</a>
       <a href="#mobile-en"><span class="num mono">13</span> Mobile &amp; Remote Access</a>
       <a href="#backup-en"><span class="num mono">14</span> Backup, Export &amp; Import</a>
       <a href="#security-en"><span class="num mono">15</span> Security &amp; Passwords</a>
       <a href="#settings-en"><span class="num mono">16</span> Other Settings</a>
+      <a href="#multiproject-en"><span class="num mono">17</span> Switching, Combining &amp; Multiple Projects</a>
       <a href="#faq-en"><span class="num mono">＋</span> FAQ</a>
     </nav>
 
@@ -1115,7 +1240,7 @@
             </ol>
             <div class="callout tip">
               <span class="callout-label">Tip</span>
-              That small status window has a <b>"Quit DMS"</b> button (bottom-right) to fully exit the program, and a <b>"Remote Upload"</b> button (bottom-left) used in Chapter 13, "Mobile & Remote Access" — you can ignore it for now.
+              That small status window has a <b>"Quit DMS"</b> button (bottom-right) to fully exit the program, and a <b>"Remote Upload"</b> button (bottom-left) used in Chapter 13, "Mobile & Remote Access" — you can ignore it for now. If double-clicking DMS.exe does nothing, or Windows shows a security warning, see the "Windows protected your PC" entry in the FAQ below.
             </div>
           </div>
 
@@ -1168,6 +1293,10 @@
               <li><b>Left</b>: the folder tree, expandable/collapsible, right-click any folder for its menu. Just above it sits a row of quick buttons: New folder, Upload document, Rename, Delete, Text tree, Plot.</li>
               <li><b>Right</b>: the list of documents in the currently selected folder.</li>
             </ul>
+            <div class="callout tip">
+              <span class="callout-label">Voice input works in almost every text field</span>
+              Folder/document names, serial numbers, login credentials, descriptions, the search box, the Ask AI box — nearly every text field has a small microphone icon next to it. Click it and speak; the recognized text is appended right where your cursor is, and clicking again stops it. You can switch the recognition language between Chinese and English, all done in the browser with no AI key needed (see Section 4.5).
+            </div>
           </div>
         </div>
       </section>
@@ -1191,11 +1320,11 @@
             <h3>3.2 Rename &amp; delete</h3>
             <ol class="steps">
               <li><b>Rename</b>: right-click a folder → "Rename", or double-click its name, edit, and press Enter. The real folder on disk is renamed to match.</li>
-              <li><b>Delete</b>: right-click a folder → "Delete folder" and confirm — the folder and everything under it (subfolders and documents) is removed.</li>
+              <li><b>Delete</b>: right-click a folder → "Delete folder" and confirm — the folder disappears from the tree, and its documents aren't erased from disk right away; they're moved into a hidden folder called <span class="mono">Not Show in Tree</span>.</li>
             </ol>
-            <div class="callout warn">
-              <span class="callout-label">Be careful</span>
-              Deleting a folder deletes the real files on disk too, and doesn't go through a recycle bin — it can't be undone directly. For anything important, export a backup first (Chapter 14) before deleting.
+            <div class="callout note">
+              <span class="callout-label">Want a document back after deleting its folder?</span>
+              Scroll to the bottom of the left-hand tree and expand <span class="mono">Not Show in Tree</span> — documents there can be re-linked or moved back into any folder (Section 5.3). Only deleting a document again from inside that hidden folder permanently erases it from disk, with no undo. The folder disappearing from the tree itself isn't reversible in one click though — if you might need it again later, dragging it elsewhere is safer than deleting it.
             </div>
           </div>
 
@@ -1223,12 +1352,22 @@
 
           <div class="sub">
             <h3>3.5 Bulk-build a whole tree from a list</h3>
-            <p>If you already have a written-out folder structure (e.g. a project's filing categories), you don't have to create each folder by hand — paste an indented outline and import it all at once.</p>
+            <p>If you already have a written-out folder structure (e.g. a bill of materials, an org chart), you don't have to create each folder by hand — import it all at once from a simple comma-separated (CSV) text file.</p>
+            <table class="kv">
+              <tr><th>Column 1</th><td>Folder name. Required — the folder this row creates.</td></tr>
+              <tr><th>Column 2</th><td>Parent folder name — which already-listed folder this nests under; leave blank for the root. The file's very first row is the root folder itself, so its own parent column must be blank.</td></tr>
+              <tr><th>Column 3</th><td>Description, optional — can be left out of the file entirely. When present, it becomes that folder's initial description.</td></tr>
+            </table>
             <ol class="steps">
               <li>Click <b>"Project"</b> → <b>"Create folder tree from a hierarchy file"</b> in the top toolbar.</li>
-              <li>Paste your hierarchy definition into the dialog: one folder name per line, with indentation (e.g. 2 spaces per level) showing nesting. The same part name is allowed to repeat legitimately under different parents (like a bill-of-materials).</li>
-              <li>Click "Preview" to check the parsed result, then "Import" once it looks right.</li>
+              <li>Paste or upload your CSV text, e.g.:<br><span class="mono">Top Assembly<br>Pump Housing,Top Assembly<br>Rotor Assembly,Top Assembly<br>Bolt,Rotor Assembly</span></li>
+              <li>Click "Validate" to check it. If the same folder name repeats in the file (e.g. an identical "Bolt" sub-part under two different assemblies), it's flagged as an error by default; check "Auto-number duplicate folder names" and re-validate, and DMS numbers them "Bolt 01," "Bolt 02," and so on so the whole file imports successfully.</li>
+              <li>Once the preview looks right, click "Create"; every folder appears in the tree immediately.</li>
             </ol>
+            <div class="callout tip">
+              <span class="callout-label">Exporting from a BOM tool?</span>
+              Level-heading rows (lines that just say something like "Level 1") are skipped automatically, and a leading column-title row ("folder name, parent folder name, description") is detected and ignored too — no need to delete either by hand.
+            </div>
           </div>
         </div>
       </section>
@@ -1262,8 +1401,21 @@
           </div>
 
           <div class="sub">
-            <h3>4.4 Upload while keeping an existing folder structure</h3>
-            <p>If you already have a whole set of material organized into folders on your computer (e.g. a project's full directory), you can choose to recreate that exact subfolder layout inside DMS instead of letting it auto-sort everything by date.</p>
+            <h3>4.4 Upload a whole folder, three filing modes to choose from</h3>
+            <p>If you already have a whole set of material organized into folders on your computer (e.g. a project's full directory, or a photo album folder exported from your phone), you don't have to drag files one at a time — upload an entire folder in one go.</p>
+            <ol class="steps">
+              <li>With the destination folder selected, click <b>"Upload Folder"</b> in the toolbar — this opens the "Upload Multiple Folders" dialog.</li>
+              <li>Click "+ Add folder" and pick a folder on your computer; repeat to queue up several at once, each listed above with an × to remove it.</li>
+              <li>Choose one of three filing modes:
+                <ul class="plain">
+                  <li><b>Sort into year/month folders</b> (default): every file in each picked folder (including subfolders) is auto-filed by capture/archive date into "year/month" subfolders, and the original subfolder layout isn't kept — best for a photo album where you only care about the date, not the original organization.</li>
+                  <li><b>Upload as the sources</b>: subfolders are recreated here exactly as they are, with no date-based year/month folders — for material that's already organized the way you want to keep it.</li>
+                  <li><b>Recreate the picked folder under the current folder</b>: unlike the other two, the picked folder itself also becomes a new subfolder here (not just its contents); the whole structure lands as-is, and matching directories are created on the local drive too.</li>
+                </ul>
+              </li>
+              <li>Optionally type something into "Add text to filenames (optional)" — it's inserted right after the date when there is one, or at the very front of the filename when there isn't; the mic button next to it accepts dictation too. Leave it blank to add nothing.</li>
+              <li>Click "Upload" in the bottom-right corner to finish.</li>
+            </ol>
           </div>
 
           <div class="sub">
@@ -1289,12 +1441,16 @@
 
           <div class="sub">
             <h3>4.7 Bulk import from a ZIP</h3>
-            <p>If you have a large batch of documents whose filenames already start with the name or number of their target folder (e.g. <span class="mono">A-001_spec-sheet.pdf</span> for the folder numbered A-001), you can zip them up and let DMS sort them all at once.</p>
+            <p>If you have a large batch of documents and can tell from the filename which folder each belongs in, name them with a convention and zip them up for DMS to sort all at once. The target folders must already exist in the tree (unlike Section 3.5's hierarchy import, this doesn't create new folders).</p>
             <ol class="steps">
-              <li>Click <b>"Project"</b> → <b>"Bulk import documents from ZIP"</b>.</li>
-              <li>Drop in the ZIP file — DMS shows which files match which folder, and which couldn't be matched.</li>
-              <li>Confirm to finish the import.</li>
+              <li>Name each file like <span class="mono">FolderName#description.pdf</span> (e.g. <span class="mono">Home Insurance#2026 Policy.pdf</span> for a folder named "Home Insurance" — everything after the # can be anything you like), then zip them up.</li>
+              <li>Click <b>"Project"</b> → <b>"Bulk import documents from ZIP"</b> and pick that ZIP file.</li>
+              <li>DMS shows which files match which folder, and which couldn't be matched.</li>
             </ol>
+            <div class="callout tip">
+              <span class="callout-label">Same folder name in more than one place?</span>
+              If the same folder name occurs more than once in the tree (say, "Bolt" under both "Rotor Assembly" and "Housing Assembly"), matching by bare name lands on whichever comes first. Use a "/"-separated path before the # instead, e.g. <span class="mono">Rotor Assembly/Bolt#List.pdf</span>, to land specifically on the "Bolt" folder under "Rotor Assembly" rather than the identically-named one elsewhere.
+            </div>
           </div>
 
           <div class="sub">
@@ -1309,6 +1465,25 @@
               <span class="callout-label">Always double-check it</span>
               If a document contains more than one date — a birth date, an issue date, an expiry date — the auto-detected one isn't guaranteed to be the one you actually want. An auto-detected date is flagged in amber, noting it was "auto-detected from '...' in the document's own text," and keeps that flag until you confirm or correct it — click "Date" on the document's card to check and save the right one.
             </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.10 Batch convert to PDF</h3>
+            <p>Need to convert a batch of photos or existing PDFs into individually named PDF files? No need to save them one at a time.</p>
+            <ol class="steps">
+              <li>Check the images and/or PDFs to convert, then click <b>"Convert to PDF"</b> in the toolbar.</li>
+              <li>The dialog lists your checked documents; confirm and click "Convert N documents to PDF".</li>
+              <li>Each one is converted into its own PDF (filenames start with "YYYY-MM-DD-" when a date can be determined), and the originals move into the <span class="mono">Not Show in Tree</span> recycle folder (Section 3.2, recoverable).</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>4.11 On-disk filenames &amp; structural snapshots</h3>
+            <p>Neither of these needs any action from you, but they're worth knowing about when browsing files in Finder/Explorer or troubleshooting:</p>
+            <ul class="plain">
+              <li>Filenames on disk are name-first, id-second (e.g. <span class="mono">Inspection Report+DOC-20260920-xxx.pdf</span>), so browsing the storage folder directly tells you what a file is without opening it first.</li>
+              <li>Before any change to a project's folder structure (adding/removing folders, moving, batch operations), DMS automatically saves a snapshot of the structure at that moment; if a change ever leaves things in a bad state, that snapshot can be used to roll back — a background safety net you won't see any UI for during normal use.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -1374,6 +1549,7 @@
               <li><b>Sorting</b>: the "Sort by" dropdown above the document list orders the current folder's documents by name (A–Z), document date (metadata), due date (metadata), or date modified.</li>
               <li><b>Previous / next</b>: with a document open in the preview window, click the arrows on either side of it, or just press the left/right arrow keys, to step through the current folder's documents without closing and reopening the preview each time.</li>
               <li><b>Batch rename</b>: click <b>"Batch rename"</b> in the toolbar to generate a new filename for every document in the current folder — in the form "date + first 10 characters of location + original name" (e.g. <span class="mono">20260815SanFrancisco-contract.pdf</span>), using each document's own date and location metadata. Review the preview list, confirm, and every file is renamed at once — including the actual file on disk.</li>
+              <li><b>Batch AI-fill a parameter</b>: to fill in the same key parameter across a batch of documents without opening each one, click <b>"AI-fill parameter"</b> in the toolbar, check the documents, and pick an existing or new parameter name. DMS reads each document's page images to find the value, lists the results for you to review, and only writes them in once you click "Apply" (full flow in Section 7.4; needs AI configured per Chapter 8).</li>
             </ul>
           </div>
 
@@ -1385,6 +1561,15 @@
               <li>Click <b>"Schedule"</b> in the top toolbar to turn on color warnings: every document with a due date, and every folder containing one, is automatically color-coded by urgency — <b>red for due within 1 day or overdue</b>, <b>yellow for within 1 week</b>, <b>blue for within 2 weeks</b> — with a matching color legend shown right in the toolbar.</li>
               <li>Turning on Schedule mode also opens a <b>"Documents due soon"</b> list, showing every document due within 2 weeks ranked by urgency, along with its folder path and exact due date — click any row to open that document directly. It's a standalone popup you can close and reopen anytime by clicking "Schedule" again.</li>
             </ol>
+          </div>
+
+          <div class="sub">
+            <h3>5.9 Pop out the icon view into its own window</h3>
+            <p>Section 5.7's "Icon view" can also be popped out into a standalone browser window — click "Pop out" — handy for dragging to a second monitor while you keep working in the tree elsewhere. Inside the pop-out window, multi-selecting documents adds two more batch actions on top of Section 5.2's batch download:</p>
+            <ul class="plain">
+              <li><b>Batch delete</b>: check several documents and delete them all in one go (into the <span class="mono">Not Show in Tree</span> recycle folder, Section 3.2, recoverable), instead of one at a time.</li>
+              <li><b>Batch add a prefix</b>: add a common piece of text as a prefix to every checked file's name (e.g. a note after the date) — a different renaming tool from Section 5.7's date+location batch rename, useful for different situations.</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -1415,6 +1600,7 @@
               <li>Type a number, filename, description, or metadata keyword — results filter live as you type.</li>
             </ol>
             <p>Search covers filenames, the full text from OCR, and every metadata field you've added to a document (Chapter 7). DMS also flags likely-unreliable garbled OCR output so it doesn't pollute your search results.</p>
+            <p>When you type more than one word, the "Multi-word match" control next to the search box decides how they combine: <b>All words (AND)</b> (the default — a document must contain every word you typed to match), <b>Any word (OR)</b> (matches if it contains at least one, handy when you're not sure which of several related terms a document uses, like "invoice receipt bill"), or <b>Whole sentence</b> (skips splitting into words and matches the entire box's contents verbatim as one exact phrase — useful when you know exactly which line you're looking for).</p>
           </div>
         </div>
       </section>
@@ -1465,6 +1651,7 @@
               <span class="callout-label">Tip for tables</span>
               Check "Same-line only" so DMS only matches content on the same line as the field name — ideal for tabular documents; leave it unchecked to search the whole text instead.
             </div>
+            <p>The above is for one document at a time. To fill in the same parameter across a whole batch of documents at once, you don't need to open each one — in the document list toolbar, click <b>"AI-fill parameter"</b>, check the documents to process, pick a parameter name, and click "Start extraction." DMS reads each document's page images to find the value (no selectable text layer required — scans and photos work too), lists the results for review, and only writes them in once you click "Apply" (see Section 5.7; this batch flow uses the same AI image-reading ability as Section 8.2, so it needs AI configured per Chapter 8).</p>
           </div>
 
           <div class="sub">
@@ -1512,6 +1699,7 @@
               <li>Pick Gemini or DeepSeek and ask — AI searches across every document and cites exactly which one each answer came from, so you can verify the source.</li>
             </ol>
             <p>You can also scope the question to just one folder (check "This node and its subfolders only") instead of the entire project.</p>
+            <p>To ask about just the document you're currently looking at, you don't need to switch to the Search tab — click <b>"Ask AI"</b> right at the top of the document preview window. A panel expands on the right, and AI answers using that document's own extracted text, description, and key parameters; the same panel also has "Clean up with AI" for that document's description (works exactly like Section 4.5).</p>
           </div>
 
           <div class="sub">
@@ -1651,23 +1839,41 @@
 
       <!-- 11 -->
       <section class="chapter" id="databook-en">
-        <div class="chapter-head"><span class="chapter-num">11</span><h2 class="chapter-title disp">Generating a Databook (Bound PDF Package)</h2></div>
+        <div class="chapter-head"><span class="chapter-num">11</span><h2 class="chapter-title disp">Generating a Databook (PDF or Word)</h2></div>
         <div class="chapter-body">
-          <p class="lead">The "Data book" feature merges any set of documents you select from the folder tree into one formal PDF, complete with a cover page, table of contents, and per-section bookmarks — ideal as a handoff package or for archival printing.</p>
-          <ol class="steps">
-            <li>Switch to the top <b>"Data book"</b> tab.</li>
-            <li>Check the documents to merge in the document picker — you can select across multiple folders.</li>
-            <li>Fill in a title and subtitle for the databook (optionally insert your own cover page ahead of the auto-generated one).</li>
-            <li>Click <b>"Generate and download"</b> — DMS arranges everything into a section structure following folder order and serial numbers, then merges it into one PDF.</li>
-          </ol>
-          <ul class="plain">
-            <li>Image-only folders convert automatically into print-ready PDF pages.</li>
-            <li>A landscape source page rotates automatically to portrait, so the whole book stays consistently oriented.</li>
-            <li>With many photos involved, images are intelligently re-compressed before embedding — near-invisible on the page, but the whole file can shrink to roughly one-hundredth of its original size.</li>
-          </ul>
-          <div class="callout tip">
-            <span class="callout-label">Tip</span>
-            Your selection and title are remembered automatically after you generate once, so reopening the "Data book" tab next time picks up right where you left off.
+          <p class="lead">The "Data book" feature merges documents into one formal book, complete with a cover page, table of contents, and per-section bookmarks — ideal as a handoff package or for archival printing. There are two modes: manually pick documents for a PDF, or auto-generate an editable Word file straight from a folder.</p>
+
+          <div class="sub">
+            <h3>11.1 Hand-pick documents, generate a PDF</h3>
+            <ol class="steps">
+              <li>Switch to the top <b>"Data book"</b> tab and choose "Manual selection (PDF)".</li>
+              <li>Check the documents to merge in the document picker — you can select across multiple folders.</li>
+              <li>Fill in a title and subtitle for the databook (optionally insert your own cover page ahead of the auto-generated one).</li>
+              <li>Click <b>"Generate and download"</b> — DMS arranges everything into a section structure following folder order and serial numbers, then merges it into one PDF.</li>
+            </ol>
+            <ul class="plain">
+              <li>Image-only folders convert automatically into print-ready PDF pages.</li>
+              <li>A landscape source page rotates automatically to portrait, so the whole book stays consistently oriented.</li>
+              <li>With many photos involved, images are intelligently re-compressed before embedding — near-invisible on the page, but the whole file can shrink to roughly one-hundredth of its original size.</li>
+            </ul>
+            <div class="callout tip">
+              <span class="callout-label">Tip</span>
+              Your selection and title are remembered automatically after you generate once, so reopening the "Data book" tab next time picks up right where you left off.
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>11.2 Auto-generate a Word databook from a folder</h3>
+            <p>Instead of hand-picking documents, this mode only needs one "top" folder selected — DMS builds the chapter structure from the folder tree itself, producing an editable .docx you can keep formatting in Word. Good for when you need to tweak formatting before handing it off, or someone specifically asked for Word instead of PDF.</p>
+            <ol class="steps">
+              <li>Switch to the top <b>"Data book"</b> tab and choose "By folder, auto (Word)".</li>
+              <li>Check one folder — each of its subfolders (nesting is fine) becomes a chapter, documents within a chapter keep their existing folder order, and each document's description is appended after it.</li>
+              <li>Click the generate button; DMS builds the .docx on the server and your browser downloads it.</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">How this differs from PDF mode</span>
+              Both modes produce a brand-new file without touching anything in your folders; the Word mode's tables, headings, and body text are genuine editable Word content, not PDF pages pasted in as images, so it's easy to add or tweak small pieces of text afterward.
+            </div>
           </div>
         </div>
       </section>
@@ -1833,11 +2039,53 @@
         <div class="chapter-body">
           <ul class="plain">
             <li><b>Download the user manual / setup guides</b>: the "Downloads" section at the bottom of the "Project" menu offers a .docx copy of this manual, OneDrive setup guides (Chinese/English), and a Windows face-recognition install guide.</li>
-            <li><b>Switch storage location</b>: click the storage path button in the top toolbar anytime to switch to another DMS project folder already on your computer.</li>
+            <li><b>Switch storage location</b>: click the storage path button in the top toolbar anytime to switch to another DMS project folder already on your computer (Chapter 17 covers the startup project picker, running several at once, and merging another project in).</li>
             <li><b>Language switch</b>: the whole interface can be toggled between Chinese and English anytime from the top of the screen, with no effect on your saved data.</li>
-            <li><b>Multiple projects at once</b>: run several DMS project windows/instances side by side and switch between them freely, with no need to close one before opening another.</li>
             <li><b>No document count limit</b>: a project can hold an unlimited number of documents.</li>
           </ul>
+        </div>
+      </section>
+
+      <!-- 17 -->
+      <section class="chapter" id="multiproject-en">
+        <div class="chapter-head"><span class="chapter-num">17</span><h2 class="chapter-title disp">Switching, Combining &amp; Multiple Projects</h2></div>
+        <div class="chapter-body">
+          <p class="lead">A "project" in DMS is just a storage path — one whole independent folder tree, its documents, and its settings. It's now easy to switch between projects, keep several open at once, or even combine two into one.</p>
+
+          <div class="sub">
+            <h3>17.1 Choosing a project at startup</h3>
+            <p>Double-click DMS.app / DMS.exe and, if DMS has already been used on this computer before, you won't be dropped straight into setting a storage location like the very first time — instead a "Choose Project" screen appears first:</p>
+            <ul class="plain">
+              <li><b>Continue previous project</b>: reopen whichever project was open the last time DMS quit normally.</li>
+              <li><b>Choose another project folder</b>: browse to a different DMS project folder already on your computer.</li>
+              <li><b>Create a brand new empty project</b>: start from scratch, with no sample data carried over.</li>
+            </ul>
+            <p>As long as you quit normally (the "Quit DMS" button, Cmd+Q, closing the status window, and so on), DMS remembers which project was open. If several project windows were open at once, "previous" means whichever one was closed normally most recently.</p>
+          </div>
+
+          <div class="sub">
+            <h3>17.2 Running multiple projects at once</h3>
+            <p>Run several DMS project windows/instances side by side, each fully independent and logged in separately, with no need to close one before opening another.</p>
+            <ol class="steps">
+              <li>Click the "open another project" entry in the top "Project" menu, or simply launch DMS.app / DMS.exe again and pick a different project folder from Section 17.1's startup screen.</li>
+              <li>DMS starts a separate window and its own service for the new project, on a different local port, fully independent of any window already open.</li>
+              <li>Opening the same project folder again is detected, and DMS switches to the existing window for it instead of starting a duplicate.</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>17.3 Combining another project in</h3>
+            <p>Good for when two computers (or two people) have each been organizing material separately for a while and now need to merge into one — folds another DMS project's folders and documents wholesale into the one you're currently using.</p>
+            <ol class="steps">
+              <li>Click "Combine Project" in the top "Project" menu.</li>
+              <li>Pick the storage folder of the other project to fold in.</li>
+              <li>Confirm to start: same-named folders merge together automatically, documents that are byte-for-byte identical are skipped rather than duplicated, and everything else merges normally into the current project's tree.</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">Back up first</span>
+              Combining folds another project into this one — export a full backup of the current project (Chapter 14) beforehand in case the result isn't quite what you expected.
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1851,7 +2099,7 @@
           <div class="faq-a">You can reset it by editing the local config file directly. It's located at <span class="mono">~/.pms_dms_config.json</span> on Mac, or <span class="mono">C:\Users\yourname\.pms_dms_config.json</span> on Windows. Open it in a plain text editor and set both the <span class="mono">password_hash</span> and <span class="mono">password_salt</span> fields to an empty string <span class="mono">""</span>, save, and restart DMS — password protection is removed. (This is the app login password, distinct from Section 15.2's "project password", which lives inside the project's own folder — the same edit-and-clear approach works on its config file there.)</div>
 
           <div class="faq-q">I accidentally deleted a folder or document — can I get it back?</div>
-          <div class="faq-a">Deleting a document only removes one reference as long as it's linked elsewhere — the file itself stays. Only once the last reference is deleted does the file move into the "Not Show in Tree" folder on disk, where you can find it manually. Deleting an entire folder, however, is not reversible — export a backup (Chapter 14) before doing anything important. If your storage path is inside a cloud-synced folder (like OneDrive), its version history may also help recover a deleted file.</div>
+          <div class="faq-a">Deleting a document only removes one reference as long as it's linked elsewhere — the file itself stays. Only once the last reference is deleted does the file move into the "Not Show in Tree" folder on disk (Section 3.2), where you can find it manually. Deleting an entire folder works the same way underneath: the folder itself disappears from the tree, but its documents also land in "Not Show in Tree" first rather than being erased from disk immediately — only deleting them again from inside that hidden folder is the real, unrecoverable step. The folder disappearing from the tree isn't something you can undo with one click, though, so it's still worth exporting a backup (Chapter 14) before any big structural change. If your storage path is inside a cloud-synced folder (like OneDrive), its version history may also help recover a deleted file.</div>
 
           <div class="faq-q">Why does sending email show an "SMTP error"?</div>
           <div class="faq-a">Common causes: Gmail without an "App Password" (using the regular account password instead); a provider's SMTP access isn't turned on (QQ Mail and 163 both require enabling it manually in their web interface first); or a company firewall blocking ports 587/465 — contact your network admin in that case.</div>
@@ -1875,7 +2123,7 @@
 
       <footer>
         <span>DMS.app — User Manual</span>
-        <span>Written for first-time users, compiled against the current release · rev. 2026-09-12</span>
+        <span>Written for first-time users, compiled against the current release · rev. 2026-09-26</span>
       </footer>
 
     </main>
