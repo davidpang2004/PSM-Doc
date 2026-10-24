@@ -208,7 +208,7 @@
       <p class="tb-sub">DMS 是一款运行在您自己电脑上的文档与照片管理系统。它把您硬盘上的真实文件，组织成一棵可以随意展开、搜索的文件夹树，全部通过浏览器操作，不上传到任何云端服务器。本手册假定您此前从未使用过 DMS，会从"如何安装"开始，逐步讲到每一项功能的具体点击步骤。</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-09-26</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-10-23</div></div>
       <div class="tb-field"><div class="tb-field-label disp">适用对象</div><div class="tb-field-value mono">完全没用过 DMS 的新用户</div></div>
       <div class="tb-field"><div class="tb-field-label disp">支持平台</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">章节</div><div class="tb-field-value mono">01–17 + 常见问题</div></div>
@@ -219,8 +219,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-CN-Releases/releases">查看全部历史版本</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-260926-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-260926-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-260926-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-260926-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261023-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261023-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261023-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261023-EN.pdf</span></a>
     </div>
   </div>
 
@@ -324,7 +324,7 @@
             <h3>2.3 树形视图的左右结构</h3>
             <p>在"树形"标签下：</p>
             <ul class="plain">
-              <li><b>左侧</b>：文件夹树，可展开/折叠，右键点击任意文件夹弹出操作菜单。树的正上方还有一排快捷按钮：新建文件夹、上传文档、重命名、删除、文本树、趋势图。</li>
+              <li><b>左侧</b>：文件夹树，可展开/折叠，右键点击任意文件夹弹出操作菜单。树的正上方还有一排快捷按钮：新建文件夹、上传文档、重命名、删除、文本树（显示当前选中文件夹的结构）、趋势图。</li>
               <li><b>右侧</b>：选中文件夹里的文档列表。</li>
             </ul>
             <div class="callout tip">
@@ -432,6 +432,7 @@
           <div class="sub">
             <h3>4.3 从剪贴板直接粘贴截图</h3>
             <p>不需要先截图保存到桌面再上传：截图后直接在 DMS 页面里按 <b>Cmd+V</b>（Mac）或 <b>Ctrl+V</b>（Windows）即可粘贴进当前文件夹。</p>
+            <p>复制的<b>文字</b>也可以直接粘贴：如果剪贴板里是一段文字而不是图片，DMS 会把它排版成一份 PDF，命名为 <span class="mono">Pasted text 日期 时间.pdf</span>，存入当前文件夹。</p>
           </div>
 
           <div class="sub">
@@ -519,6 +520,17 @@
               <li>每次修改项目的文件夹结构（增删文件夹、移动、批量操作等）之前，DMS 都会自动先保存一份当时的快照；万一某次改动把结构弄乱了，可以借助该快照恢复——这是一层后台自动运行的安全网，正常使用不会看到任何界面。</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>4.12 照片按拍摄地点自动分文件夹</h3>
+            <p>带定位信息的照片，除了按年/月分文件夹（见 4.6），现在还可以在<b>月文件夹下再按拍摄地点分一层</b>：同一“半径”范围内的照片放进同一个地点文件夹，文件夹自动以地名命名（例如“Boston, Massachusetts”）。</p>
+            <ol class="steps">
+              <li>上传照片时，会先弹出确认窗口，勾选“照片按拍摄地点分子文件夹（在月文件夹内）”。</li>
+              <li>输入“半径”，选择“英里”或“公里”。第一次默认 10 英里，之后会记住您上次用的值，不想改直接点“上传”；取消勾选则只按年/月归档。</li>
+              <li>没有定位信息的照片留在月文件夹里；手机上传也按同样规则分。地名是上传完成后在后台查询的，不会拖慢上传；查不到时文件夹先叫“Location 1”“Location 2”……</li>
+            </ol>
+            <p><b>分得不满意？</b>半径太大会把不同地方混在一起，太小又会把同一地方拆开。在照片所在的文件夹上右键，选择“按地点重新分组照片…”，换一个半径，窗口会先预览“会分成几个地点文件夹”，满意后点“重新分组”，可以反复调整。这个功能也能把以前上传、还没按地点分过的照片整理一遍；被手动改过名称的地点文件夹会被重新命名，其他文件夹和文档不受影响。</p>
+          </div>
         </div>
       </section>
 
@@ -551,6 +563,7 @@
               <li>在弹出的窗口中搜索或浏览要链接的文档；也可以直接把结果<b>拖拽</b>到左侧的文件夹上，松手即完成关联，不用再逐个点击确认。</li>
               <li>该文档随即出现在当前文件夹中，同时仍保留在原文件夹里；文档卡片上会显示"已链接至 N 个节点"。</li>
             </ol>
+            <p>“链接现有文档”窗口也升级了：拖动标题栏可以移动窗口，拖动两栏之间的分隔线可以调整宽度；左侧文件夹树有“全部展开 / 全部折叠”按钮，展开后直接勾选要链接的文档；右侧的“目标文件夹”既可以勾选，也可以把文档直接拖到目标文件夹上。窗口里还有“删除”按钮，会把选中的文档从磁盘<b>永久删除</b>，无法撤销，请谨慎使用。</p>
             <div class="callout note">
               <span class="callout-label">关于删除</span>
               删除一个链接只是解除这个文件夹对该文档的引用，不会删除实际文件；只有当所有引用都被删除时，文件才会真正从磁盘上移除（并进入下方的回收区）。
@@ -605,6 +618,17 @@
               <li><b>批量加前缀</b>：给勾选的一批文件名统一加上一段前缀文字（比如在日期后面补一句说明），和 5.7 节按"日期+地点"生成新文件名的批量重命名是两种不同的改名方式，各有用途。</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>5.10 PDF 翻译、保存译文与原文｜译文对照</h3>
+            <p>打开 PDF，点击查看器顶部的“中文翻译”，右半边会显示译文，左边是原文，两边同步滚动。右上角的下拉框可选“快速翻译（免费）”（默认，无需 AI 密钥）、Gemini 或 DeepSeek；后两者需要先配置密钥（见第 8 章）。</p>
+            <ul class="plain">
+              <li><b>保存为 PDF</b>：把整份译文按页排成纯文字 PDF，存进原文所在的文件夹，文件名为“原文件名 + 语言名”。</li>
+              <li><b>保存为 PDF（保持版式）</b>：把译文放回原文所在的位置，保留表格、分栏等版式（要求原 PDF 有可选中的文字，可能需要一两分钟）。</li>
+              <li><b>原文 | 译文</b>：保存过译文之后，打开原文或译文任意一份，点击这个按钮即可左右对照，同步滚动。</li>
+              <li><b>编辑译文</b>：点击右栏的“编辑”可以逐页（版式译文则逐段）修改，支持语音输入；先选中文字再点调色板里的颜色，可以给所选文字标色或高亮，“清除”可去掉颜色，改完点“保存”。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -635,6 +659,11 @@
             </ol>
             <p>搜索范围包括文件名、OCR 识别出的全文，以及您为文档添加的所有元数据字段（见第 7 章）。系统还会自动标记出可能不可靠的乱码 OCR 结果，避免它们干扰搜索。</p>
             <p>输入多个词（用空格分隔）时，搜索框旁的"多词匹配"决定它们怎么组合：<b>全部包含 (AND)</b>（默认，必须同时包含每一个词才算匹配）、<b>任一包含 (OR)</b>（包含其中任意一个词就算匹配，比如同时输入"发票 收据 账单"这类近义词时很好用）、<b>整句匹配</b>（不拆分成单独的词，把输入框里的全部内容当一句话原样精确匹配，适合确定就要找某一句原文的时候）。</p>
+          </div>
+
+          <div class="sub">
+            <h3>6.3 跳转到命中页并红色高亮</h3>
+            <p>搜索命中的是 PDF 时，查看器里会出现“跳转到第 N 页”按钮：点击后直接翻到命中所在的那一页，并用<b>红色</b>高亮标出匹配的文字，不用再逐页寻找。</p>
           </div>
         </div>
       </section>
@@ -1064,6 +1093,15 @@
             <p>可以在某个文件夹下保存一组或多组相关的网站地址、用户名和密码，点击"添加登录信息"即可继续添加，只有点击"显示"时才会解密显示；同一个文件夹下可以保存任意多组，并提供"复制用户名"的快捷按钮。</p>
             <p>常见用法是把某个在线账号的登录信息，和与它相关的文件存在同一个文件夹里，做到"资料"与"入口"合一：比如在"体检报告"文件夹里顺便存好医院/医生网上个人账户的登录信息，以后要复查报告或预约，不用再到处翻找账号密码；同理也适用于设备厂家的管理后台、保险公司官网、银行或基金账户等场景。</p>
           </div>
+
+          <div class="sub">
+            <h3>15.4 一次导出所有登录信息</h3>
+            <p>点击文档工具栏上的“导出登录信息”，DMS 会生成一份 Excel 表格并直接用默认的表格程序打开。每一行是一组登录信息，列依次为：文件夹、网站、用户名、密码、文件夹描述。</p>
+            <div class="callout warn">
+              <span class="callout-label">注意</span>
+              密码列是<b>明文</b>。这份表格是临时文件，请核对完毕后妥善保管或删除，不要随意转发。显示“(cannot decrypt…)”表示该密码是在另一台电脑上保存的，当前电脑无法解密。
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1129,6 +1167,9 @@
       </div>
       <section class="chapter">
         <div class="chapter-body">
+          <div class="faq-q">Gemini 提示“API 额度已用完”（429）怎么办？</div>
+          <div class="faq-a">免费版 Gemini 有每日（或每分钟）额度上限，提示里会写明大约多久后恢复。可以稍后重试、为该 Google 项目开通计费、换另一个 API 密钥，或改用 DeepSeek；翻译可以改选“快速翻译（免费）”。</div>
+
           <div class="faq-q">忘记了应用登录密码怎么办？</div>
           <div class="faq-a">可以手动编辑本机的配置文件重置密码。文件位于 Mac 的 <span class="mono">~/.pms_dms_config.json</span> 或 Windows 的 <span class="mono">C:\Users\yourname\.pms_dms_config.json</span>。用文本编辑器打开，把其中 <span class="mono">password_hash</span> 和 <span class="mono">password_salt</span> 两个字段的值都改成空字符串 <span class="mono">""</span>，保存后重启 DMS，密码保护即被移除。（这是应用登录密码，与第 15.2 节的"项目密码"是两回事，项目密码保存在项目文件夹内，同理可用文本编辑器打开项目文件夹里的相应配置文件清空重置。）</div>
 
@@ -1157,7 +1198,7 @@
 
       <footer>
         <span>DMS.app — 用户手册</span>
-        <span>面向零基础新用户编写，根据当前版本整理 · 2026-09-26</span>
+        <span>面向零基础新用户编写，根据当前版本整理 · 2026-10-23</span>
       </footer>
 
     </main>
@@ -1175,7 +1216,7 @@
       <p class="tb-sub">DMS is a document and photo management system that runs on your own computer. It organizes the real files on your hard drive into a folder tree you can browse and search, all through your web browser — nothing is uploaded to any cloud server. This manual assumes you have never used DMS before: it starts with "how do I install it" and walks through the exact clicks for every feature.</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-09-26</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-10-23</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Audience</div><div class="tb-field-value mono">First-time DMS users</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Platforms</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Chapters</div><div class="tb-field-value mono">01–17 + FAQ</div></div>
@@ -1186,8 +1227,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-CN-Releases/releases">See all past releases</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-260926-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-260926-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-260926-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-260926-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261023-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261023-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261023-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261023-EN.pdf</span></a>
     </div>
   </div>
 
@@ -1290,7 +1331,7 @@
           <div class="sub">
             <h3>2.3 Layout of the Tree tab</h3>
             <ul class="plain">
-              <li><b>Left</b>: the folder tree, expandable/collapsible, right-click any folder for its menu. Just above it sits a row of quick buttons: New folder, Upload document, Rename, Delete, Text tree, Plot.</li>
+              <li><b>Left</b>: the folder tree, expandable/collapsible, right-click any folder for its menu. Just above it sits a row of quick buttons: New folder, Upload document, Rename, Delete, Text tree (shows the structure of the currently selected folder), Plot.</li>
               <li><b>Right</b>: the list of documents in the currently selected folder.</li>
             </ul>
             <div class="callout tip">
@@ -1398,6 +1439,7 @@
           <div class="sub">
             <h3>4.3 Paste a screenshot straight from the clipboard</h3>
             <p>No need to save a screenshot to the Desktop first — take the screenshot, then press <b>Cmd+V</b> (Mac) or <b>Ctrl+V</b> (Windows) anywhere on the DMS page to drop it straight into the current folder.</p>
+            <p>It works for copied <b>text</b> too: if the clipboard holds a passage of text instead of an image, pasting typesets it into a PDF named <span class="mono">Pasted text &lt;date&gt; &lt;time&gt;.pdf</span> in the current folder.</p>
           </div>
 
           <div class="sub">
@@ -1485,6 +1527,17 @@
               <li>Before any change to a project's folder structure (adding/removing folders, moving, batch operations), DMS automatically saves a snapshot of the structure at that moment; if a change ever leaves things in a bad state, that snapshot can be used to roll back — a background safety net you won't see any UI for during normal use.</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>4.12 Grouping photos into location folders</h3>
+            <p>Photos that carry location data can now be split one level further than year/month (see 4.6): inside each <b>month folder</b>, photos taken within the same radius of each other go into one place folder, named automatically after the place (for example “Boston, Massachusetts”).</p>
+            <ol class="steps">
+              <li>When you upload photos, a confirmation window appears first. Tick “Group photos into location folders (inside each month)”.</li>
+              <li>Enter a Radius and choose miles or km. The first time it defaults to 10 miles; afterwards DMS remembers your last value, so just click “Upload” if you don't want to change it. Untick the box to file by year/month only.</li>
+              <li>Photos without location data stay in the month folder, and phone uploads follow the same rule. Place names are looked up in the background after the upload, so uploads aren't slowed down; if a name can't be found the folder is temporarily called “Location 1”, “Location 2”, …</li>
+            </ol>
+            <p><b>Not happy with the grouping?</b> A radius that is too large lumps different places together; too small splits one place apart. Right-click the folder holding the photos and choose “Regroup photos by location…”, pick a new radius, and the window previews how many place folders it will make; click “Regroup” when you're happy. You can repeat as often as you like. It also tidies photos you uploaded earlier that were never grouped by place; place folders you renamed by hand get renamed again, while other folders and documents are untouched.</p>
+          </div>
         </div>
       </section>
 
@@ -1517,6 +1570,7 @@
               <li>Search or browse for the document in the dialog that opens; you can also <b>drag</b> a result straight onto a folder on the left to link it in one motion, with no per-item confirm click needed.</li>
               <li>The document now appears in the current folder while still remaining in its original one; its card shows "Linked to N node(s)".</li>
             </ol>
+            <p>The Link Existing Document window has been upgraded too: drag its title bar to move it and drag the divider between the two columns to resize them; the folder tree on the left has Expand all / Collapse all buttons, so you can open folders and tick the documents to link; on the right, tick the Target folders or simply drag a document onto one. A Delete button <b>permanently deletes</b> the selected documents from disk — it cannot be undone, so use it with care.</p>
             <div class="callout note">
               <span class="callout-label">About deleting a link</span>
               Removing a link only detaches that one folder's reference to the document — it doesn't delete the actual file. Only once every reference is removed does the file actually move off disk (into the recycle area below).
@@ -1571,6 +1625,17 @@
               <li><b>Batch add a prefix</b>: add a common piece of text as a prefix to every checked file's name (e.g. a note after the date) — a different renaming tool from Section 5.7's date+location batch rename, useful for different situations.</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>5.10 PDF translation, saving it, and Original | Translation</h3>
+            <p>Open a PDF and click “Translate” at the top of the viewer: the right half shows the translation beside the original on the left, scrolling in sync. The dropdown at the top right offers “Fast (free)” (the default, no AI key needed), Gemini or DeepSeek; the latter two need a key configured first (chapter 8).</p>
+            <ul class="plain">
+              <li><b>Save as PDF</b>: translates the whole document and saves a plain-text PDF in the same folder, named “original name + language”.</li>
+              <li><b>Save with layout</b>: puts each translation back where the original text was, keeping tables and columns (needs a PDF with selectable text; may take a minute or two).</li>
+              <li><b>Original | Translation</b>: once a translation is saved, open either file and click this button for a side-by-side view that scrolls in sync.</li>
+              <li><b>Edit the translation</b>: click “Edit” in the right pane to correct it page by page (paragraph by paragraph for layout translations); voice input is supported. Select text and click a colour in the palette to colour or highlight it, “Clear” removes the colour, then click “Save”.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1601,6 +1666,11 @@
             </ol>
             <p>Search covers filenames, the full text from OCR, and every metadata field you've added to a document (Chapter 7). DMS also flags likely-unreliable garbled OCR output so it doesn't pollute your search results.</p>
             <p>When you type more than one word, the "Multi-word match" control next to the search box decides how they combine: <b>All words (AND)</b> (the default — a document must contain every word you typed to match), <b>Any word (OR)</b> (matches if it contains at least one, handy when you're not sure which of several related terms a document uses, like "invoice receipt bill"), or <b>Whole sentence</b> (skips splitting into words and matches the entire box's contents verbatim as one exact phrase — useful when you know exactly which line you're looking for).</p>
+          </div>
+
+          <div class="sub">
+            <h3>6.3 Jump to the matching page, highlighted in red</h3>
+            <p>When a search hit is inside a PDF, the viewer shows a “Jump to page N” button. Click it to go straight to the page of the match, with the matching text highlighted in <b>red</b> — no more hunting page by page.</p>
           </div>
         </div>
       </section>
@@ -2030,6 +2100,15 @@
             <p>Save one or more sets of related website address, username, and password against a specific folder — click "Add another login" to keep adding more — decrypted only when you click "reveal". Any folder can hold any number of these logins, with a "copy username" quick-action button included.</p>
             <p>A common use: keep an online account's login right alongside the files it relates to, so the record and the access point live in one place. For example, store your hospital or doctor's patient-portal login in the same folder as your "Physical Exam Reports" — next time you need to check a result or book an appointment, you're not hunting for the password separately. The same pattern works well for an equipment manufacturer's admin portal, an insurance company's website, or a bank or investment account.</p>
           </div>
+
+          <div class="sub">
+            <h3>15.4 Exporting every login at once</h3>
+            <p>Click “Export logins” in the document toolbar and DMS builds an Excel spreadsheet and opens it in your default spreadsheet program. Each row is one login; the columns are Folder, Website, User name, Password and Folder description.</p>
+            <div class="callout warn">
+              <span class="callout-label">Careful</span>
+              The Password column is in <b>plain text</b>. The file is temporary — keep it safe or delete it when you're done, and don't forward it. A password shown as “(cannot decrypt…)” was saved on another computer and can't be decrypted here.
+            </div>
+          </div>
         </div>
       </section>
 
@@ -2095,6 +2174,9 @@
       </div>
       <section class="chapter">
         <div class="chapter-body">
+          <div class="faq-q">Gemini says “API quota exceeded” (429) — what now?</div>
+          <div class="faq-a">The free Gemini tier has daily (or per-minute) limits, and the message says roughly when it resets. Retry later, enable billing on the Google project, use another API key, or switch to DeepSeek; for translation you can pick “Fast (free)”.</div>
+
           <div class="faq-q">I forgot the app login password — what do I do?</div>
           <div class="faq-a">You can reset it by editing the local config file directly. It's located at <span class="mono">~/.pms_dms_config.json</span> on Mac, or <span class="mono">C:\Users\yourname\.pms_dms_config.json</span> on Windows. Open it in a plain text editor and set both the <span class="mono">password_hash</span> and <span class="mono">password_salt</span> fields to an empty string <span class="mono">""</span>, save, and restart DMS — password protection is removed. (This is the app login password, distinct from Section 15.2's "project password", which lives inside the project's own folder — the same edit-and-clear approach works on its config file there.)</div>
 
@@ -2123,7 +2205,7 @@
 
       <footer>
         <span>DMS.app — User Manual</span>
-        <span>Written for first-time users, compiled against the current release · rev. 2026-09-26</span>
+        <span>Written for first-time users, compiled against the current release · rev. 2026-10-23</span>
       </footer>
 
     </main>
