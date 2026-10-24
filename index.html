@@ -403,6 +403,16 @@
               带有"Level 1"这类分级标题行、或第一行是"文件夹名, 父文件夹名, 说明"这样的列标题行，DMS 都会自动识别并跳过，不用手动删除。
             </div>
           </div>
+
+          <div class="sub">
+            <h3>3.6 在描述中直接粘贴截图</h3>
+            <p>文件夹和文档的描述框都支持直接粘贴图片：截一张屏（或复制一张图片），把光标放进描述框，按 <b>Ctrl+V</b>（Mac：<b>Cmd+V</b>），截图会内嵌显示在光标所在位置，与文字混排。</p>
+            <ul class="plain">
+              <li>粘贴的截图会作为一份真实的图片文档保存在当前文件夹中（会出现在文档列表里，删除后进入“Not Show in Tree”，可以找回）；描述里只是引用它。</li>
+              <li>在描述框里粘贴图片，不会再同时触发 4.3 的“粘贴截图为新文档”；粘贴网页上复制的带格式文字时，只保留纯文字。</li>
+              <li>AI 整理润色、检查错别字只处理文字部分，已插入的截图会保留；导出为 .txt / PDF 或在搜索结果中显示时，截图位置显示为“[截图]”。旧版本保存的纯文字描述会自动兼容。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -531,6 +541,57 @@
             </ol>
             <p><b>分得不满意？</b>半径太大会把不同地方混在一起，太小又会把同一地方拆开。在照片所在的文件夹上右键，选择“按地点重新分组照片…”，换一个半径，窗口会先预览“会分成几个地点文件夹”，满意后点“重新分组”，可以反复调整。这个功能也能把以前上传、还没按地点分过的照片整理一遍；被手动改过名称的地点文件夹会被重新命名，其他文件夹和文档不受影响。</p>
           </div>
+
+          <div class="sub">
+            <h3>4.13 扫描条码（识别图片中的条码/二维码）</h3>
+            <p>照片里拍到条码或二维码（产品标签、设备铭牌等）时，DMS 可以直接把编码内容识别出来，无需手动抄录。</p>
+            <ol class="steps">
+              <li>打开该图片（或含条码图片的 PDF）的查看器。</li>
+              <li>点击顶部的“扫描条码”。</li>
+              <li>识别成功后，顶部会显示编码类型与内容（例如“CODE128：6901234567892”）。</li>
+              <li>结果自动存为该文档的“Barcode”参数，可在元数据区域查看或编辑；同一张照片有多个条码时，依次存为 Barcode、Barcode2、Barcode3……</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">说明</span>
+              本功能完全离线运行（基于开源 zbar 库），不上传任何数据，也不需要 AI 密钥；但要求条码清晰、无遮挡，四周留有空白边框。手机截图分享的二维码（尤其是中间嵌有图标、或背景色直接顶到条码边缘的，如微信“扫码入群”图片）通常无法识别，这是已知局限，并非软件故障。
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.14 上传设备记录（AN^SN^PN 命名）</h3>
+            <p>适合设备资料管理：一份记录按“装配号（AN）^序列号（SN）^零件名称（PN）^原文件名”命名，并直接存入名称等于该装配号的文件夹，之后单看文件名就知道它属于哪台设备。</p>
+            <ol class="steps">
+              <li>点击树形标签工具栏中的“上传设备记录”，弹出可拖动、可调整大小的窗口。</li>
+              <li>在左侧选择 AN（装配号 / 文件夹）——可先在筛选框里输入文字缩小范围——再按需填写 SN、PN（均可留空）。</li>
+              <li>点击“选择文件…”选一个文件，窗口会显示“将保存为：”的新文件名，右侧可预览图片、PDF 或文本。</li>
+              <li>确认无误后点击“上传”。AN / SN / PN 会保留，可直接选下一个文件。</li>
+            </ol>
+            <p>一次传很多份时，点击“按文件名上传”，选择多个文件名已写成 <span class="mono">AN^SN^PN.扩展名</span> 的文件（例如 <span class="mono">A100^SN001^轴承.pdf</span>），DMS 自动拆出字段、匹配对应文件夹，逐行显示状态（已上传 / 已存在跳过 / 出错原因），点击“上传 N 个文件”完成。</p>
+            <div class="callout note">
+              <span class="callout-label">说明</span>
+              用“^”作分隔符，是因为工单号和零件名称本身常带连字符。AN 必须与某个文件夹名称一致，否则该行提示找不到文件夹。
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.15 质检审核（QC Review）与审核报告</h3>
+            <p>质检审核用于对一批检验报告逐份填写审核意见，并在文件夹层面汇总成一份可交付的 PDF。结构是：每个“检验项目”一个文件夹，里面放该项目的检验报告；每个文件各有一份审核表；整个文件夹另有一条“总体意见”。</p>
+            <ol class="steps">
+              <li><b>上传记录</b>：点击树形标签工具栏的“上传质检审核”，用法同 4.14，字段为检验项目（文件夹）、SN、设备描述、WO/PO（工单号 / 采购订单号）；也可“按文件名上传”，文件名格式 <span class="mono">检验项目^SN^设备描述^WO/PO</span>。每份文件都会自动建立审核表并预先填好这些字段。</li>
+              <li><b>填写单个审核</b>：打开文档查看器，点击“质检审核”（尚未填写时显示“添加质检审核”）。窗口自动变宽，左半边显示文件，右半边是审核表，分隔线可拖动。表中包含检验项目、SN、设备描述、WO/PO、审核日期、审核人、观察结果、缓解措施，以及审核结果（Pass / Fail / Conditional / Pending）。修改会自动保存，这些字段也可以被搜索到。</li>
+              <li><b>总体意见与报告</b>：选中检验项目文件夹，在其质检审核区域填写“总体意见”，再点击“质检审核报告”。在对话框里选择要附在报告后面的实际检验报告（全选 / 全不选 / 逐份勾选），DMS 生成一份 PDF：先是总体意见和各文件的审核汇总页，后面附上所选检验报告；Word、PowerPoint 会先转成 PDF（需要电脑上安装 LibreOffice）。报告存在该文件夹里，再次生成会覆盖原报告，不会越存越多。</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>4.16 AI 识别服务日期</h3>
+            <p>化验单、体检报告里往往同时有出生日期和检查日期，上传时的自动日期识别分不清二者。“AI 识别服务日期”用 Gemini 重新读取已有文档，专门找“服务 / 检验 / 检查发生的日期”，并明确排除出生日期。</p>
+            <ul class="plain">
+              <li>文档列表工具栏：点击“AI 识别服务日期”，勾选若干 PDF / 图片后开始。</li>
+              <li>文件夹多选模式：勾选若干文件夹后点击同一按钮，会处理这些文件夹及所有子文件夹内的每份 PDF / 图片。</li>
+              <li>识别结束后会弹出与上传日期核对相同的确认对话框，您核对后才会写入日期，不会静默覆盖；没识别到服务日期的文档只在提示里统计数量。需要先配置 Gemini 密钥（第 8 章）。</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -629,6 +690,12 @@
               <li><b>编辑译文</b>：点击右栏的“编辑”可以逐页（版式译文则逐段）修改，支持语音输入；先选中文字再点调色板里的颜色，可以给所选文字标色或高亮，“清除”可去掉颜色，改完点“保存”。</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>5.11 在文档中查找文字、编辑元数据</h3>
+            <p><b>查找文字</b>：查看器顶部的“查找文字”可在当前文档内查找一段文字，采用模糊匹配（相似度约 70% 即算命中），所以不必与原文完全一致，OCR 有少量错字也能找到；命中后可直接跳转到对应页。没有可搜索文字的文档会提示先运行 OCR。</p>
+            <p><b>编辑元数据</b>：点击“编辑元数据”（信息栏里为“元数据”）可修改文档的元数据。同一份文档如果被关联到多个文件夹，这里的修改对所有引用它的位置同时生效。</p>
+          </div>
         </div>
       </section>
 
@@ -664,6 +731,15 @@
           <div class="sub">
             <h3>6.3 跳转到命中页并红色高亮</h3>
             <p>搜索命中的是 PDF 时，查看器里会出现“跳转到第 N 页”按钮：点击后直接翻到命中所在的那一页，并用<b>红色</b>高亮标出匹配的文字，不用再逐页寻找。</p>
+          </div>
+
+          <div class="sub">
+            <h3>6.4 使用筛选器</h3>
+            <ul class="plain">
+              <li><b>文件类型</b>：勾选图片、PDF、文本或文档，把结果限定为该类型。</li>
+              <li><b>范围节点</b>：启用“限定范围至所选节点”，只在当前文件夹及其子文件夹中搜索。</li>
+              <li><b>元数据</b>：输入参数名称和 / 或值，查找具有匹配元数据的文档（例如：压力 = 3000 psi）。</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -1115,6 +1191,18 @@
             <li><b>语言切换</b>：整个应用界面可随时在顶部一键切换中文/英文，不影响已保存的数据。</li>
             <li><b>文档数量不再受限</b>：单个项目可保存的文档数量没有上限。</li>
           </ul>
+
+          <div class="sub">
+            <h3>16.1 键盘快捷键</h3>
+            <ul class="plain">
+              <li>确认文件夹重命名 / 新文件夹名称：<span class="mono">Enter</span>；取消：<span class="mono">Escape</span></li>
+              <li>开始重命名文件夹：双击文件夹名称；打开文件夹右键菜单：右键单击文件夹</li>
+              <li>关闭文档查看器：<span class="mono">Escape</span> 或点击“关闭”</li>
+              <li>粘贴剪贴板图片 / 文字到当前文件夹：<span class="mono">Ctrl+V</span>（Windows）/ <span class="mono">Cmd+V</span>（Mac）</li>
+              <li>复制 / 全选 / 撤销（文本框内）：<span class="mono">Ctrl+C</span> / <span class="mono">Ctrl+A</span> / <span class="mono">Ctrl+Z</span></li>
+              <li>查看器内切换上一份 / 下一份文档：<span class="mono">←</span> / <span class="mono">→</span></li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1410,6 +1498,16 @@
               Level-heading rows (lines that just say something like "Level 1") are skipped automatically, and a leading column-title row ("folder name, parent folder name, description") is detected and ignored too — no need to delete either by hand.
             </div>
           </div>
+
+          <div class="sub">
+            <h3>3.6 Pasting screenshots straight into a description</h3>
+            <p>Folder and document Description boxes accept pasted images: take a screenshot (or copy an image), click into a Description box and press <b>Ctrl+V</b> (<b>Cmd+V</b> on Mac). The screenshot appears inline at the cursor, mixed with your text.</p>
+            <ul class="plain">
+              <li>The pasted screenshot is saved as a real image document in the current folder (it shows in the document list, and if deleted goes to “Not Show in Tree” where it can be recovered); the description just references it.</li>
+              <li>Pasting into a Description does not also trigger 4.3's “paste a screenshot as a new document”; pasting formatted text copied from a web page keeps plain text only.</li>
+              <li>AI polish and the typo checker only handle the text portion — inserted screenshots are kept. In .txt / PDF exports and search results a screenshot shows as “[screenshot]”. Plain-text descriptions saved by older versions keep working.</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1538,6 +1636,57 @@
             </ol>
             <p><b>Not happy with the grouping?</b> A radius that is too large lumps different places together; too small splits one place apart. Right-click the folder holding the photos and choose “Regroup photos by location…”, pick a new radius, and the window previews how many place folders it will make; click “Regroup” when you're happy. You can repeat as often as you like. It also tidies photos you uploaded earlier that were never grouped by place; place folders you renamed by hand get renamed again, while other folders and documents are untouched.</p>
           </div>
+
+          <div class="sub">
+            <h3>4.13 Barcode scanning</h3>
+            <p>If a photo shows a barcode or QR code (a product label, an equipment nameplate…), DMS can read the code straight from the image — no retyping.</p>
+            <ol class="steps">
+              <li>Open the viewer for that image (or a PDF containing one).</li>
+              <li>Click “Scan Barcode” at the top.</li>
+              <li>On success a banner shows the code type and value (e.g. “CODE128: 6901234567892”).</li>
+              <li>The result is saved automatically as the document's “Barcode” parameter, viewable and editable in the metadata section; several barcodes on one photo are saved as Barcode, Barcode2, Barcode3, …</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">Good to know</span>
+              This runs entirely offline (open-source zbar library), sends nothing anywhere and needs no AI key — but the code must be sharp, unobstructed and have a blank margin around it. QR codes shared as phone screenshots (especially with a logo in the middle, or a background running right up to the edge, like a WeChat “join group” image) usually can't be read; that's a known limitation, not a bug.
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.14 Upload Eq Record (AN^SN^PN naming)</h3>
+            <p>For equipment record-keeping: a record is renamed to Assembly Number (AN)^Serial Number (SN)^Part Name (PN)^original file name and filed straight into the folder whose name equals that AN, so the file name alone tells you which unit it belongs to.</p>
+            <ol class="steps">
+              <li>Click “Upload Eq Record” in the Tree tab toolbar. A window opens that you can drag and resize.</li>
+              <li>On the left pick the AN (assembly number / folder) — type in the filter box first to narrow the list — then optionally fill in SN and PN (both may be blank).</li>
+              <li>Click “Choose file…”. The window shows “Will be saved as:” with the new name and previews images, PDFs and text on the right.</li>
+              <li>Click “Upload” when it looks right. AN / SN / PN stay filled in so you can pick the next file.</li>
+            </ol>
+            <p>To upload many at once, click “Upload by file name” and pick several files already named <span class="mono">AN^SN^PN.extension</span> (e.g. <span class="mono">A100^SN001^Bearing.pdf</span>). DMS splits out the fields, matches each AN to its folder and shows a status per row (Uploaded / Already exists, skipped / the reason for an error); click “Upload N file(s)” to finish.</p>
+            <div class="callout note">
+              <span class="callout-label">Good to know</span>
+              “^” is the separator because work-order numbers and part names often contain hyphens. The AN must match a folder name, otherwise that row reports no folder was found.
+            </div>
+          </div>
+
+          <div class="sub">
+            <h3>4.15 QC Review and the QC Review Report</h3>
+            <p>QC Review lets you fill in a review for each of a batch of inspection reports and roll everything up into a deliverable PDF at folder level. The structure: one folder per “Inspection” holding its report files; each file has its own review form; the folder as a whole has one General Comment.</p>
+            <ol class="steps">
+              <li><b>Upload the records</b>: click “Upload QC Review” in the Tree tab toolbar. It works like 4.14 but the fields are Inspection (folder), SN, Equipment Description and WO/PO (Work Order / Purchase Order); “Upload by file name” accepts <span class="mono">Inspection^SN^Equipment Description^WO/PO</span>. Each file automatically gets a review form pre-filled with those fields.</li>
+              <li><b>Fill in one file's review</b>: open the viewer and click “QC Review” (“Add QC Review” until one exists). The window widens: the file on the left, the form on the right, with a draggable divider. The form has Inspection, SN, Equipment Description, WO/PO, Date Reviewed, Reviewed By, Observation, Mitigation and Review Result (Pass / Fail / Conditional / Pending). Changes save automatically, and the fields are searchable.</li>
+              <li><b>General Comment and report</b>: select the inspection folder, fill in the General Comment in its QC Review section, then click “QC Review Report”. Choose which actual inspection reports to attach (Select all / None / tick one by one) and DMS builds a PDF: the General Comment and per-file review summary first, then the chosen reports. Word and PowerPoint files are converted to PDF first (needs LibreOffice installed). The report is filed in that folder and regenerating overwrites it instead of piling up copies.</li>
+            </ol>
+          </div>
+
+          <div class="sub">
+            <h3>4.16 AI: Detect service date</h3>
+            <p>Lab reports and medical exams often show both a date of birth and an exam date, and the upload-time date detector can't tell them apart. “AI: Detect service date” re-reads existing documents with Gemini, looking specifically for the date the service / inspection / exam took place and explicitly excluding the date of birth.</p>
+            <ul class="plain">
+              <li>Document list toolbar: click “AI: Detect service date”, tick several PDFs / images, and start.</li>
+              <li>Folder multi-select mode: tick some folders and click the same button to process every PDF / image in them and all their subfolders.</li>
+              <li>When it finishes, the same confirmation dialog used for upload-time dates opens — nothing is written until you review it. Documents with no service date found are only counted in the message. Needs a Gemini key (chapter 8).</li>
+            </ul>
+          </div>
         </div>
       </section>
 
@@ -1636,6 +1785,12 @@
               <li><b>Edit the translation</b>: click “Edit” in the right pane to correct it page by page (paragraph by paragraph for layout translations); voice input is supported. Select text and click a colour in the palette to colour or highlight it, “Clear” removes the colour, then click “Save”.</li>
             </ul>
           </div>
+
+          <div class="sub">
+            <h3>5.11 Finding text inside a document, and editing metadata</h3>
+            <p><b>Search text</b>: the viewer's “Search text” finds a passage inside the current document using fuzzy matching (about 70% similarity counts as a hit), so it needn't match the original exactly and still works with a few OCR errors; a match can jump straight to its page. Documents with no searchable text prompt you to run OCR first.</p>
+            <p><b>Edit metadata</b>: click “Edit metadata” (“Metadata” in the info panel) to change a document's metadata. If the same document is linked into several folders, the change applies everywhere it is referenced.</p>
+          </div>
         </div>
       </section>
 
@@ -1671,6 +1826,15 @@
           <div class="sub">
             <h3>6.3 Jump to the matching page, highlighted in red</h3>
             <p>When a search hit is inside a PDF, the viewer shows a “Jump to page N” button. Click it to go straight to the page of the match, with the matching text highlighted in <b>red</b> — no more hunting page by page.</p>
+          </div>
+
+          <div class="sub">
+            <h3>6.4 Using filters</h3>
+            <ul class="plain">
+              <li><b>File type</b>: tick Image, PDF, Text or Documents to restrict results to that type.</li>
+              <li><b>Scope</b>: enable “Scope to selected node” to search only within the selected folder and its sub-folders.</li>
+              <li><b>Metadata</b>: enter a parameter name and/or value to find documents with matching metadata (e.g. Pressure = 3000 psi).</li>
+            </ul>
           </div>
         </div>
       </section>
@@ -2122,6 +2286,18 @@
             <li><b>Language switch</b>: the whole interface can be toggled between Chinese and English anytime from the top of the screen, with no effect on your saved data.</li>
             <li><b>No document count limit</b>: a project can hold an unlimited number of documents.</li>
           </ul>
+
+          <div class="sub">
+            <h3>16.1 Keyboard shortcuts</h3>
+            <ul class="plain">
+              <li>Confirm folder rename / new folder name: <span class="mono">Enter</span>; cancel: <span class="mono">Escape</span></li>
+              <li>Start renaming a folder: double-click its name; open the folder context menu: right-click the folder</li>
+              <li>Close the Document Viewer: <span class="mono">Escape</span>, or click Close</li>
+              <li>Paste a clipboard image / text into the current folder: <span class="mono">Ctrl+V</span> (Windows) / <span class="mono">Cmd+V</span> (Mac)</li>
+              <li>Copy / select all / undo (in text fields): <span class="mono">Ctrl+C</span> / <span class="mono">Ctrl+A</span> / <span class="mono">Ctrl+Z</span></li>
+              <li>Previous / next document in the viewer: <span class="mono">←</span> / <span class="mono">→</span></li>
+            </ul>
+          </div>
         </div>
       </section>
 
