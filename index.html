@@ -358,7 +358,7 @@
             </ol>
             <div class="callout note">
               <span class="callout-label">想找回被删文件夹里的文档？</span>
-              在左侧树的底部找到 <span class="mono">Not Show in Tree</span> 节点展开，里面的文档可以重新"链接"或移动回任意文件夹（见 5.3 节）；只有在这个隐藏节点里再次点删除，文件才会真正从磁盘上永久清除、无法撤销。但文件夹被删除后就不在树里了，这个动作本身不会撤销——如果只是想临时挪走、以后可能还要用，建议改用拖拽把它移到别处，而不是删除。
+              在左侧树的底部找到 <span class="mono">Not Show in Tree</span> 节点展开，里面的文档可以重新"链接"或移动回任意文件夹（见 5.3 节）；只有在这个隐藏节点里再次点删除，文件才会真正从磁盘上永久清除、无法撤销。在“已删除文件”（Not Show in Tree）里删除某个子文件夹时，会连同它的所有子文件夹和其中的文档一起永久删除，不必再逐个删除文件；如果某个文档还链接在其他文件夹里，则只移除这里的链接，文件保留。但文件夹被删除后就不在树里了，这个动作本身不会撤销——如果只是想临时挪走、以后可能还要用，建议改用拖拽把它移到别处，而不是删除。
             </div>
           </div>
 
@@ -540,6 +540,7 @@
               <li>没有定位信息的照片留在月文件夹里；手机上传也按同样规则分。地名是上传完成后在后台查询的，不会拖慢上传；查不到时文件夹先叫“Location 1”“Location 2”……</li>
             </ol>
             <p><b>分得不满意？</b>半径太大会把不同地方混在一起，太小又会把同一地方拆开。在照片所在的文件夹上右键，选择“按地点重新分组照片…”，换一个半径，窗口会先预览“会分成几个地点文件夹”，满意后点“重新分组”，可以反复调整。这个功能也能把以前上传、还没按地点分过的照片整理一遍；被手动改过名称的地点文件夹会被重新命名，其他文件夹和文档不受影响。</p>
+            <p><b>文件夹结构三选一：</b>上传确认窗口（以及 4.17 的“从 iPhone 导入”窗口）里有“文件夹结构”下拉框：<b>年/月/地点</b>（默认）、<b>年/月/日</b>（不再按地点分）、<b>年/月/日/地点</b>。您的选择会被记住，作为下次的默认值。</p>
           </div>
 
           <div class="sub">
@@ -591,6 +592,24 @@
               <li>文件夹多选模式：勾选若干文件夹后点击同一按钮，会处理这些文件夹及所有子文件夹内的每份 PDF / 图片。</li>
               <li>识别结束后会弹出与上传日期核对相同的确认对话框，您核对后才会写入日期，不会静默覆盖；没识别到服务日期的文档只在提示里统计数量。需要先配置 Gemini 密钥（第 8 章）。</li>
             </ul>
+          </div>
+
+          <div class="sub">
+            <h3>4.17 从 iPhone 导入照片（USB / Wi-Fi）</h3>
+            <p>点击文档树上方工具栏的“从 iPhone 导入”，窗口有三个标签页。</p>
+            <p><b>照片和视频（USB 数据线）</b></p>
+            <ol class="steps">
+              <li>用数据线把 iPhone 连接到电脑，解锁手机并点“信任”；窗口显示“已连接”后，DMS 会读取手机里的照片和视频。</li>
+              <li>选择目标文件夹（现有的，或先新建一个），再选导入范围：只导入新的（上次之后的）、全部或指定日期范围；以及“照片和视频 / 仅照片 / 仅视频”。</li>
+              <li>在“文件夹结构”里选择 <b>年/月/地点</b>、<b>年/月/日</b> 或 <b>年/月/日/地点</b>（见 4.12），需要按地点分时可设置半径和单位。</li>
+              <li>确认“将导入 N 项”后点“导入”。导入期间请勿拔出数据线，可随时点“停止”。已导入过的照片，下次选“只导入新的”时不会重复导入。</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">“最近删除”里的照片不会被导入</span>
+              手机“最近删除”相册（30 天内可恢复）里的照片和视频，文件其实仍留在手机存储中；DMS 会读取手机的照片数据库把它们排除。如果读取不到该数据库，则退回到旧行为（会包含这些照片）。如果开启了“优化 iPhone 储存空间”，部分原图只在 iCloud 里，无法通过数据线导入。
+            </div>
+            <p><b>PDF 和其他文件（Wi-Fi）：</b>iPhone 的“文件”App 和 iCloud 云盘无法通过数据线读取。让手机和电脑连同一个 Wi-Fi，选好目标文件夹，用 iPhone 相机扫描窗口里的二维码，点“选择文件”选取 PDF 等文件，再点“Upload”，文件就会进入所选文件夹。</p>
+            <p><b>发送到 iPhone（Wi-Fi）：</b>反过来，选择要发送的文件夹（可含子文件夹，可选仅照片或仅视频），用手机扫描二维码打开图库页面，单张照片点开后长按选“添加到照片”。链接 24 小时内有效（重启 DMS 后失效）。</p>
           </div>
         </div>
       </section>
@@ -1453,7 +1472,7 @@
             </ol>
             <div class="callout note">
               <span class="callout-label">Want a document back after deleting its folder?</span>
-              Scroll to the bottom of the left-hand tree and expand <span class="mono">Not Show in Tree</span> — documents there can be re-linked or moved back into any folder (Section 5.3). Only deleting a document again from inside that hidden folder permanently erases it from disk, with no undo. The folder disappearing from the tree itself isn't reversible in one click though — if you might need it again later, dragging it elsewhere is safer than deleting it.
+              Scroll to the bottom of the left-hand tree and expand <span class="mono">Not Show in Tree</span> — documents there can be re-linked or moved back into any folder (Section 5.3). Only deleting a document again from inside that hidden folder permanently erases it from disk, with no undo. The folder disappearing from the tree itself isn't reversible in one click though — if you might need it again later, dragging it elsewhere is safer than deleting it. Also, deleting a subfolder inside <span class="mono">Not Show in Tree</span> (Deleted files) erases it for good together with all its subfolders and the documents in them — no second round of deleting; a document that is also linked from another folder only loses the link there.
             </div>
           </div>
 
@@ -1635,6 +1654,7 @@
               <li>Photos without location data stay in the month folder, and phone uploads follow the same rule. Place names are looked up in the background after the upload, so uploads aren't slowed down; if a name can't be found the folder is temporarily called “Location 1”, “Location 2”, …</li>
             </ol>
             <p><b>Not happy with the grouping?</b> A radius that is too large lumps different places together; too small splits one place apart. Right-click the folder holding the photos and choose “Regroup photos by location…”, pick a new radius, and the window previews how many place folders it will make; click “Regroup” when you're happy. You can repeat as often as you like. It also tidies photos you uploaded earlier that were never grouped by place; place folders you renamed by hand get renamed again, while other folders and documents are untouched.</p>
+            <p><b>Folder structure — three choices:</b> the upload confirmation window (and the Import from iPhone window, 4.17) has a “Folder structure” drop-down: <b>YYYY/MM/Location</b> (default), <b>YYYY/MM/DD</b> (no place grouping), or <b>YYYY/MM/DD/Location</b>. Your choice is remembered as the next default.</p>
           </div>
 
           <div class="sub">
@@ -1686,6 +1706,24 @@
               <li>Folder multi-select mode: tick some folders and click the same button to process every PDF / image in them and all their subfolders.</li>
               <li>When it finishes, the same confirmation dialog used for upload-time dates opens — nothing is written until you review it. Documents with no service date found are only counted in the message. Needs a Gemini key (chapter 8).</li>
             </ul>
+          </div>
+
+          <div class="sub">
+            <h3>4.17 Importing photos from an iPhone (USB / Wi-Fi)</h3>
+            <p>Click “Import from iPhone” in the toolbar above the document tree. The window has three tabs.</p>
+            <p><b>Photos &amp; videos (USB cable)</b></p>
+            <ol class="steps">
+              <li>Connect the iPhone with its cable, unlock it and tap Trust. When the window says “Connected”, DMS reads the phone's photos and videos.</li>
+              <li>Choose the destination folder (an existing one, or create one first), then what to import: only new ones (not imported before), everything, or a date range; and Photos &amp; videos / Photos only / Videos only.</li>
+              <li>Pick the “Folder structure” — <b>YYYY/MM/Location</b>, <b>YYYY/MM/DD</b> or <b>YYYY/MM/DD/Location</b> (see 4.12); for location grouping you can also set the radius and unit.</li>
+              <li>Check “N item(s) will be imported”, then click Import. Don't unplug the cable while it runs; you can click Stop at any time. Photos already imported are skipped next time you choose “Only new ones”.</li>
+            </ol>
+            <div class="callout note">
+              <span class="callout-label">Recently Deleted photos are not imported</span>
+              Photos and videos in the phone's Recently Deleted album (recoverable for 30 days) are still physically on the phone, so DMS reads the phone's Photos database to exclude them. If that database can't be read, the import falls back to the old behaviour and includes them. With Optimize iPhone Storage on, some originals live only in iCloud and can't be copied over the cable.
+            </div>
+            <p><b>PDFs &amp; other files (Wi-Fi):</b> the iPhone's Files app and iCloud Drive can't be read over the cable. Put the phone on the same Wi-Fi as the computer, pick the destination folder, scan the QR code in the window with the iPhone camera, tap Choose Files, pick your PDFs, then tap Upload — they arrive in the chosen folder.</p>
+            <p><b>Send to iPhone (Wi-Fi):</b> the other way round — choose the folder to send (optionally with subfolders, photos only or videos only), scan the QR code with the phone to open the gallery page, and for each photo tap it, press and hold, and choose Add to Photos. The link works for 24 hours (or until DMS restarts).</p>
           </div>
         </div>
       </section>
