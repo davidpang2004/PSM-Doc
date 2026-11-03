@@ -219,8 +219,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">查看全部历史版本</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261031-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261031-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261031-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261031-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261103-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261103-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261103-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261103-EN.pdf</span></a>
     </div>
   </div>
 
@@ -268,12 +268,12 @@
             <h3>1.2 首次启动</h3>
             <ol class="steps">
               <li>双击 <b>DMS.app</b> 或 <b>DMS.exe</b>。</li>
-              <li>会先弹出一个很小的状态窗口，标题是 "QC Document Management System (QCDMS)"，里面显示当前状态和一个网址链接。<b>不要关闭这个窗口</b>——它就是 DMS 的后台服务，关掉它整个程序就会退出。</li>
-              <li>大约一秒后，系统会自动打开您的默认浏览器（推荐 Chrome），显示 DMS 的网页界面。如果没有自动打开，可以点击状态窗口里那行带下划线的网址。</li>
+              <li>程序会在后台启动 DMS 服务，不再弹出状态窗口。</li>
+              <li>大约一秒后，系统会自动打开您的默认浏览器（推荐 Chrome），显示 DMS 的网页界面。如果没有自动打开，请在浏览器地址栏输入 http://127.0.0.1:8765（端口号如有不同以实际为准）。</li>
             </ol>
             <div class="callout tip">
               <span class="callout-label">提示</span>
-              这个小状态窗口右下角有一个 <b>"Quit DMS"</b> 按钮，用来彻底退出程序；左下角的 <b>"Remote Upload"</b> 按钮会在第 13 章"手机与远程访问"中用到，现在可以先不管它。双击 DMS.exe 如果没反应、或 Windows 弹出安全警告，见下方 FAQ 中的"Windows 已保护你的电脑"一条。
+              小状态窗口现在已隐藏，不再显示；退出 DMS 请使用网页中的“退出 DMS”按钮，或 Mac 上的 Cmd+Q。双击 DMS.exe 如果没反应、或 Windows 弹出安全警告，见下方 FAQ 中的"Windows 已保护你的电脑"一条。
             </div>
           </div>
 
@@ -540,7 +540,7 @@
               <li>没有定位信息的照片留在月文件夹里；手机上传也按同样规则分。地名是上传完成后在后台查询的，不会拖慢上传；查不到时文件夹先叫“Location 1”“Location 2”……</li>
             </ol>
             <p><b>分得不满意？</b>半径太大会把不同地方混在一起，太小又会把同一地方拆开。在照片所在的文件夹上右键，选择“按地点重新分组照片…”，换一个半径，窗口会先预览“会分成几个地点文件夹”，满意后点“重新分组”，可以反复调整。这个功能也能把以前上传、还没按地点分过的照片整理一遍；被手动改过名称的地点文件夹会被重新命名，其他文件夹和文档不受影响。</p>
-            <p><b>文件夹结构三选一：</b>上传确认窗口（以及 4.17 的“从 iPhone 导入”窗口）里有“文件夹结构”下拉框：<b>年/月/地点</b>（默认）、<b>年/月/日</b>（不再按地点分）、<b>年/月/日/地点</b>。您的选择会被记住，作为下次的默认值。</p>
+            <p><b>文件夹结构三选一：</b>上传确认窗口（以及 4.17 的“从 iPhone 上传/下载”窗口）里有“文件夹结构”下拉框：<b>年/月/地点</b>（默认）、<b>年/月/日</b>（不再按地点分）、<b>年/月/日/地点</b>。您的选择会被记住，作为下次的默认值。</p>
           </div>
 
           <div class="sub">
@@ -595,8 +595,8 @@
           </div>
 
           <div class="sub">
-            <h3>4.17 从 iPhone 导入照片（USB / Wi-Fi）</h3>
-            <p>点击文档树上方工具栏的“从 iPhone 导入”，窗口有三个标签页。</p>
+            <h3>4.17 从 iPhone 上传/下载照片（USB / Wi-Fi）</h3>
+            <p>点击文档树上方工具栏的“从 iPhone 上传/下载”，窗口有三个标签页。</p>
             <p><b>照片和视频（USB 数据线）</b></p>
             <ol class="steps">
               <li>用数据线把 iPhone 连接到电脑，解锁手机并点“信任”；窗口显示“已连接”后，DMS 会读取手机里的照片和视频。</li>
@@ -1073,31 +1073,11 @@
       <section class="chapter" id="mobile-zh">
         <div class="chapter-head"><span class="chapter-num">13</span><h2 class="chapter-title disp">手机与远程访问</h2></div>
         <div class="chapter-body">
-          <p class="lead">这一章介绍反过来的方向——用手机往电脑里传照片/文件，或者用手机直接浏览电脑上的整棵文件夹树。这两项功能都是从<b>启动时弹出的那个小状态窗口</b>（第 1.2 节提到的 "QCDMS" 窗口）里操作的，而不是在浏览器网页里。</p>
+          <p class="lead">这一章介绍用手机和电脑互传照片、文件。所有操作都集中在文档树上方工具栏的<b>“从 iPhone 上传/下载”</b>窗口里（见第 4.17 节）。原来桌面启动器里的“Remote Upload”和“Quit DMS”按钮已取消，那个小状态窗口也不再显示。</p>
 
           <div class="sub">
-            <h3>13.1 从手机上传照片或文件到某个文件夹</h3>
-            <ol class="steps">
-              <li>在电脑上找到那个小状态窗口（如果被最小化了，可以在任务栏/程序坞里找回），点击 <b>"Remote Upload"</b> 按钮。</li>
-              <li>在弹出的对话框中，可选填入手机号码（含国家代码，如 +8613800138000），并从下拉列表中选择希望文件传到哪个文件夹。</li>
-              <li>点击 <b>"Generate Link"</b>，系统会启动一条安全的公网隧道并生成一个二维码和链接（此过程通常需要几秒到十几秒）。</li>
-              <li>用手机扫描二维码，或点击"Send via iMessage / SMS / WeChat"直接把链接发到手机上，也可以点"Copy URL"手动复制发送。</li>
-              <li>手机上打开链接后，即可拍照或从相册中选图直接上传，文件会自动出现在您第 2 步选择的那个文件夹里。</li>
-            </ol>
-            <div class="callout note">
-              <span class="callout-label">链接有效期</span>
-              这个远程上传链接<b>有效期为 7 天</b>，过期后需要重新点击一次"Generate Link"生成新的。
-            </div>
-          </div>
-
-          <div class="sub">
-            <h3>13.2 在手机上浏览电脑里的文件</h3>
-            <p>用手机打开第 13.1 节生成的同一条链接后，页面上会有一个"浏览"入口，点进去即可像在电脑上一样浏览整棵文件夹树、打开文档查看，而不仅仅是上传新文件。</p>
-          </div>
-
-          <div class="sub">
-            <h3>13.3 同一 Wi-Fi 下的局域网访问</h3>
-            <p>如果手机和电脑连接的是同一个 Wi-Fi 网络，也可以不经过公网隧道，直接在手机浏览器里访问电脑的局域网地址（形如 <span class="mono">http://192.168.x.x:端口号/mobile</span>）打开同样的上传页面。如果不确定电脑的局域网地址，最简单的方式仍是使用上面 13.1 节的 "Remote Upload"，它在任何网络环境下都能用。</p>
+            <h3>13.1 用“从 iPhone 上传/下载”收发文件</h3>
+            <p>点击文档树上方工具栏的“从 iPhone 上传/下载”，窗口有三个标签页：用数据线导入照片和视频；通过 Wi-Fi 让手机扫描二维码，把 PDF 等文件上传到所选文件夹；以及把电脑上的照片发送到 iPhone。详细步骤见第 4.17 节。退出 DMS 请使用网页中的“退出 DMS”按钮，或 Mac 上的 Cmd+Q。</p>
           </div>
         </div>
       </section>
@@ -1239,7 +1219,7 @@
               <li><b>选择别的项目文件夹</b>：浏览到电脑上另一个已有的 DMS 项目文件夹。</li>
               <li><b>新建一个全新的空项目</b>：从零开始，不会带入任何示例数据。</li>
             </ul>
-            <p>只要是通过窗口右下角"Quit DMS"按钮、Cmd+Q、关闭状态窗口等正常方式退出的，DMS 都会记住当时打开的是哪个项目；如果同时开着好几个项目窗口，"上次"记录的是最后一个被正常关闭的那个。</p>
+            <p>只要是通过网页中的"退出 DMS"按钮、Cmd+Q 等正常方式退出的，DMS 都会记住当时打开的是哪个项目；如果同时开着好几个项目窗口，"上次"记录的是最后一个被正常关闭的那个。</p>
           </div>
 
           <div class="sub">
@@ -1334,8 +1314,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">See all past releases</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261031-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261031-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261031-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261031-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261103-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261103-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261103-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261103-EN.pdf</span></a>
     </div>
   </div>
 
@@ -1383,12 +1363,12 @@
             <h3>1.2 First launch</h3>
             <ol class="steps">
               <li>Double-click <b>DMS.app</b> or <b>DMS.exe</b>.</li>
-              <li>A small status window titled "QC Document Management System (QCDMS)" appears first, showing status and a URL link. <b>Don't close this window</b> — it's DMS's background server; closing it quits the whole program.</li>
-              <li>After about a second, your default browser (Chrome recommended) opens automatically to the DMS web interface. If it doesn't, click the underlined URL in the status window.</li>
+              <li>DMS starts its server in the background; no status window is shown any more.</li>
+              <li>After about a second, your default browser (Chrome recommended) opens automatically to the DMS web interface. If it doesn't, open http://127.0.0.1:8765 in your browser (use the actual port if it differs).</li>
             </ol>
             <div class="callout tip">
               <span class="callout-label">Tip</span>
-              That small status window has a <b>"Quit DMS"</b> button (bottom-right) to fully exit the program, and a <b>"Remote Upload"</b> button (bottom-left) used in Chapter 13, "Mobile & Remote Access" — you can ignore it for now. If double-clicking DMS.exe does nothing, or Windows shows a security warning, see the "Windows protected your PC" entry in the FAQ below.
+              The small status window is now hidden and no longer shown; to quit DMS use the “Quit DMS” button in the web app, or Cmd+Q on a Mac. If double-clicking DMS.exe does nothing, or Windows shows a security warning, see the "Windows protected your PC" entry in the FAQ below.
             </div>
           </div>
 
@@ -1654,7 +1634,7 @@
               <li>Photos without location data stay in the month folder, and phone uploads follow the same rule. Place names are looked up in the background after the upload, so uploads aren't slowed down; if a name can't be found the folder is temporarily called “Location 1”, “Location 2”, …</li>
             </ol>
             <p><b>Not happy with the grouping?</b> A radius that is too large lumps different places together; too small splits one place apart. Right-click the folder holding the photos and choose “Regroup photos by location…”, pick a new radius, and the window previews how many place folders it will make; click “Regroup” when you're happy. You can repeat as often as you like. It also tidies photos you uploaded earlier that were never grouped by place; place folders you renamed by hand get renamed again, while other folders and documents are untouched.</p>
-            <p><b>Folder structure — three choices:</b> the upload confirmation window (and the Import from iPhone window, 4.17) has a “Folder structure” drop-down: <b>YYYY/MM/Location</b> (default), <b>YYYY/MM/DD</b> (no place grouping), or <b>YYYY/MM/DD/Location</b>. Your choice is remembered as the next default.</p>
+            <p><b>Folder structure — three choices:</b> the upload confirmation window (and the Upload/Download from iPhone window, 4.17) has a “Folder structure” drop-down: <b>YYYY/MM/Location</b> (default), <b>YYYY/MM/DD</b> (no place grouping), or <b>YYYY/MM/DD/Location</b>. Your choice is remembered as the next default.</p>
           </div>
 
           <div class="sub">
@@ -1709,8 +1689,8 @@
           </div>
 
           <div class="sub">
-            <h3>4.17 Importing photos from an iPhone (USB / Wi-Fi)</h3>
-            <p>Click “Import from iPhone” in the toolbar above the document tree. The window has three tabs.</p>
+            <h3>4.17 Uploading/downloading photos from an iPhone (USB / Wi-Fi)</h3>
+            <p>Click “Upload/Download from iPhone” in the toolbar above the document tree. The window has three tabs.</p>
             <p><b>Photos &amp; videos (USB cable)</b></p>
             <ol class="steps">
               <li>Connect the iPhone with its cable, unlock it and tap Trust. When the window says “Connected”, DMS reads the phone's photos and videos.</li>
@@ -2187,31 +2167,11 @@
       <section class="chapter" id="mobile-en">
         <div class="chapter-head"><span class="chapter-num">13</span><h2 class="chapter-title disp">Mobile &amp; Remote Access</h2></div>
         <div class="chapter-body">
-          <p class="lead">This chapter covers the reverse direction — sending photos or files from your phone into DMS, or browsing your computer's whole folder tree straight from your phone. Both are driven from <b>the small status window that appears at launch</b> (the "QCDMS" window from Section 1.2), not from the browser page itself.</p>
+          <p class="lead">This chapter covers moving photos and files between your phone and your computer. Everything now lives in the <b>“Upload/Download from iPhone”</b> window in the toolbar above the document tree (see Section 4.17). The old “Remote Upload” and “Quit DMS” buttons in the desktop launcher are gone, and that small status window is no longer shown.</p>
 
           <div class="sub">
-            <h3>13.1 Uploading photos or files from your phone into a folder</h3>
-            <ol class="steps">
-              <li>On your computer, find that small status window (check your taskbar/Dock if it's minimized) and click <b>"Remote Upload"</b>.</li>
-              <li>In the dialog, optionally enter a phone number (with country code, e.g. +16505551234), and pick which folder incoming files should land in from the dropdown.</li>
-              <li>Click <b>"Generate Link"</b> — DMS starts a secure public tunnel and produces a QR code and URL (this usually takes a few seconds to around ten).</li>
-              <li>Scan the QR code with your phone, or click "Send via iMessage / SMS / WeChat" to text the link directly — or "Copy URL" to send it manually.</li>
-              <li>Opening the link on the phone lets you take a photo or pick one from the camera roll and upload it straight away — it lands in the folder you chose in step 2.</li>
-            </ol>
-            <div class="callout note">
-              <span class="callout-label">Link expiry</span>
-              This remote upload link is valid for <b>7 days</b>. After it expires, click "Generate Link" again to make a new one.
-            </div>
-          </div>
-
-          <div class="sub">
-            <h3>13.2 Browsing your computer's files from your phone</h3>
-            <p>Opening the same link from Section 13.1 on your phone shows a "Browse" option on the page — tap it to browse the whole folder tree and open documents just as you would on the computer, not just upload new ones.</p>
-          </div>
-
-          <div class="sub">
-            <h3>13.3 Local access on the same Wi-Fi</h3>
-            <p>If your phone and computer share the same Wi-Fi network, you can skip the public tunnel entirely and open your computer's local network address in the phone's browser (something like <span class="mono">http://192.168.x.x:port/mobile</span>) to reach the same upload page. If you're not sure of your computer's local address, the "Remote Upload" flow from 13.1 is the simplest option since it works on any network.</p>
+            <h3>13.1 Sending and receiving files with “Upload/Download from iPhone”</h3>
+            <p>Click “Upload/Download from iPhone” in the toolbar above the document tree. The window has three tabs: import photos and videos over a USB cable; upload PDFs and other files over Wi-Fi by scanning a QR code with the phone into a chosen folder; and send photos from the computer to the iPhone. Full steps are in Section 4.17. To quit DMS, use the “Quit DMS” button in the web app, or Cmd+Q on a Mac.</p>
           </div>
         </div>
       </section>
@@ -2353,7 +2313,7 @@
               <li><b>Choose another project folder</b>: browse to a different DMS project folder already on your computer.</li>
               <li><b>Create a brand new empty project</b>: start from scratch, with no sample data carried over.</li>
             </ul>
-            <p>As long as you quit normally (the "Quit DMS" button, Cmd+Q, closing the status window, and so on), DMS remembers which project was open. If several project windows were open at once, "previous" means whichever one was closed normally most recently.</p>
+            <p>As long as you quit normally (the web app's "Quit DMS" button, Cmd+Q, and so on), DMS remembers which project was open. If several project windows were open at once, "previous" means whichever one was closed normally most recently.</p>
           </div>
 
           <div class="sub">
