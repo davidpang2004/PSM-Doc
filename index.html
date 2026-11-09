@@ -219,8 +219,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">查看全部历史版本</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261103-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261103-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261103-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261103-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261109-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261109-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261109-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261109-EN.pdf</span></a>
     </div>
   </div>
 
@@ -455,7 +455,7 @@
                 <ul class="plain">
                   <li><b>按年/月文件夹上传</b>（默认）：每个所选文件夹（含其子文件夹）里的所有文件都按拍摄/归档日期自动归入"年/月"两级子文件夹，不保留原来的子文件夹结构——最适合相册这类"只关心日期、不关心原来怎么分类"的资料。</li>
                   <li><b>按来源文件夹结构上传</b>：子文件夹原样在此处重建，不按日期生成年/月文件夹——适合已经整理好、想保留原目录结构的资料。</li>
-                  <li><b>在当前文件夹下重建所选文件夹</b>：与上一种的区别是，所选文件夹本身也会变成当前文件夹下的一个新子文件夹（前两种只上传其内容，不建这一层），整棵结构原样落地，本地磁盘上也会同步建好对应目录。</li>
+                  <li><b>在当前文件夹下重建所选文件夹</b>：与上一种的区别是，所选文件夹本身也会变成当前文件夹下的一个新子文件夹（前两种只上传其内容，不建这一层），整棵结构原样落地，本地磁盘上也会同步建好对应目录。此方式下也会出现“文件夹结构”选项：各文件夹内的照片会再按您所选的年/月（/日/地点）子文件夹归类，其他文件仍留在所在文件夹；选“按原样上传”则一切保持原样。</li>
                 </ul>
               </li>
               <li>如果需要，在"在文件名中添加文字（可选）"里填一段文字——有日期时插在日期后面，没有日期时加在文件名最前面；旁边也有麦克风按钮可以直接口述。留空则不加任何文字。</li>
@@ -540,7 +540,7 @@
               <li>没有定位信息的照片留在月文件夹里；手机上传也按同样规则分。地名是上传完成后在后台查询的，不会拖慢上传；查不到时文件夹先叫“Location 1”“Location 2”……</li>
             </ol>
             <p><b>分得不满意？</b>半径太大会把不同地方混在一起，太小又会把同一地方拆开。在照片所在的文件夹上右键，选择“按地点重新分组照片…”，换一个半径，窗口会先预览“会分成几个地点文件夹”，满意后点“重新分组”，可以反复调整。这个功能也能把以前上传、还没按地点分过的照片整理一遍；被手动改过名称的地点文件夹会被重新命名，其他文件夹和文档不受影响。</p>
-            <p><b>文件夹结构三选一：</b>上传确认窗口（以及 4.17 的“从 iPhone 上传/下载”窗口）里有“文件夹结构”下拉框：<b>年/月/地点</b>（默认）、<b>年/月/日</b>（不再按地点分）、<b>年/月/日/地点</b>。您的选择会被记住，作为下次的默认值。</p>
+            <p><b>文件夹结构四选一：</b>上传确认窗口（以及 4.17 的“从 iPhone 上传/下载”窗口）里有“文件夹结构”下拉框：<b>年/月/地点</b>（默认）、<b>年/月/日</b>（不再按地点分）、<b>年/月/日/地点</b>，以及<b>按原样上传（不创建年/月等文件夹）</b>——不建年、月、日、地点文件夹，文件名也不加日期，文件直接放进目标文件夹。您的选择会被记住，作为下次的默认值。</p>
           </div>
 
           <div class="sub">
@@ -608,8 +608,8 @@
               <span class="callout-label">“最近删除”里的照片不会被导入</span>
               手机“最近删除”相册（30 天内可恢复）里的照片和视频，文件其实仍留在手机存储中；DMS 会读取手机的照片数据库把它们排除。如果读取不到该数据库，则退回到旧行为（会包含这些照片）。如果开启了“优化 iPhone 储存空间”，部分原图只在 iCloud 里，无法通过数据线导入。
             </div>
-            <p><b>PDF 和其他文件（Wi-Fi）：</b>iPhone 的“文件”App 和 iCloud 云盘无法通过数据线读取。让手机和电脑连同一个 Wi-Fi，选好目标文件夹，用 iPhone 相机扫描窗口里的二维码，点“选择文件”选取 PDF 等文件，再点“Upload”，文件就会进入所选文件夹。</p>
-            <p><b>发送到 iPhone（Wi-Fi）：</b>反过来，选择要发送的文件夹（可含子文件夹，可选仅照片或仅视频），用手机扫描二维码打开图库页面，单张照片点开后长按选“添加到照片”。链接 24 小时内有效（重启 DMS 后失效）。</p>
+            <p><b>PDF 和其他文件（Wi-Fi）：</b>iPhone 的“文件”App 和 iCloud 云盘无法通过数据线读取，所以这个标签页使用链接。先在窗口顶部选择手机的连接方式：<b>同一 Wi-Fi</b>（速度快，手机和电脑必须在同一个 Wi-Fi 网络）或<b>任何网络</b>（互联网隧道，手机可用蜂窝数据或其他 Wi-Fi；首次生成二维码约需 15 秒启动隧道，若启动失败会自动退回 Wi-Fi 链接）。然后选好目标文件夹，用 iPhone 相机扫描窗口里的二维码，点“选择文件”选取 PDF 等文件，再点“Upload”，文件就会进入所选文件夹。</p>
+            <p><b>发送到 iPhone（Wi-Fi）：</b>反过来，先选择“同一 Wi-Fi”或“任何网络”（同上），再选择要发送的文件夹（可含子文件夹，可选仅照片或仅视频），用手机扫描二维码打开图库页面，单张照片点开后长按选“添加到照片”。链接 24 小时内有效（重启 DMS 后失效）。</p>
           </div>
         </div>
       </section>
@@ -1077,7 +1077,7 @@
 
           <div class="sub">
             <h3>13.1 用“从 iPhone 上传/下载”收发文件</h3>
-            <p>点击文档树上方工具栏的“从 iPhone 上传/下载”，窗口有三个标签页：用数据线导入照片和视频；通过 Wi-Fi 让手机扫描二维码，把 PDF 等文件上传到所选文件夹；以及把电脑上的照片发送到 iPhone。详细步骤见第 4.17 节。退出 DMS 请使用网页中的“退出 DMS”按钮，或 Mac 上的 Cmd+Q。</p>
+            <p>点击文档树上方工具栏的“从 iPhone 上传/下载”，窗口有三个标签页：用数据线导入照片和视频；通过链接（同一 Wi-Fi 或任何网络）让手机扫描二维码，把 PDF 等文件上传到所选文件夹；以及把电脑上的照片发送到 iPhone。详细步骤见第 4.17 节。退出 DMS 请使用网页中的“退出 DMS”按钮，或 Mac 上的 Cmd+Q。</p>
           </div>
         </div>
       </section>
@@ -1314,8 +1314,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">See all past releases</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261103-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261103-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261103-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261103-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261109-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261109-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261109-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261109-EN.pdf</span></a>
     </div>
   </div>
 
@@ -1549,7 +1549,7 @@
                 <ul class="plain">
                   <li><b>Sort into year/month folders</b> (default): every file in each picked folder (including subfolders) is auto-filed by capture/archive date into "year/month" subfolders, and the original subfolder layout isn't kept — best for a photo album where you only care about the date, not the original organization.</li>
                   <li><b>Upload as the sources</b>: subfolders are recreated here exactly as they are, with no date-based year/month folders — for material that's already organized the way you want to keep it.</li>
-                  <li><b>Recreate the picked folder under the current folder</b>: unlike the other two, the picked folder itself also becomes a new subfolder here (not just its contents); the whole structure lands as-is, and matching directories are created on the local drive too.</li>
+                  <li><b>Recreate the picked folder under the current folder</b>: unlike the other two, the picked folder itself also becomes a new subfolder here (not just its contents); the whole structure lands as-is, and matching directories are created on the local drive too. A Folder structure box also appears for this mode: photos inside each recreated folder are then sorted into the year/month(/day/location) subfolders you choose, while other files stay directly in their folder. Choose “Upload as they are” to leave everything where it came from.</li>
                 </ul>
               </li>
               <li>Optionally type something into "Add text to filenames (optional)" — it's inserted right after the date when there is one, or at the very front of the filename when there isn't; the mic button next to it accepts dictation too. Leave it blank to add nothing.</li>
@@ -1634,7 +1634,7 @@
               <li>Photos without location data stay in the month folder, and phone uploads follow the same rule. Place names are looked up in the background after the upload, so uploads aren't slowed down; if a name can't be found the folder is temporarily called “Location 1”, “Location 2”, …</li>
             </ol>
             <p><b>Not happy with the grouping?</b> A radius that is too large lumps different places together; too small splits one place apart. Right-click the folder holding the photos and choose “Regroup photos by location…”, pick a new radius, and the window previews how many place folders it will make; click “Regroup” when you're happy. You can repeat as often as you like. It also tidies photos you uploaded earlier that were never grouped by place; place folders you renamed by hand get renamed again, while other folders and documents are untouched.</p>
-            <p><b>Folder structure — three choices:</b> the upload confirmation window (and the Upload/Download from iPhone window, 4.17) has a “Folder structure” drop-down: <b>YYYY/MM/Location</b> (default), <b>YYYY/MM/DD</b> (no place grouping), or <b>YYYY/MM/DD/Location</b>. Your choice is remembered as the next default.</p>
+            <p><b>Folder structure — four choices:</b> the upload confirmation window (and the Upload/Download from iPhone window, 4.17) has a “Folder structure” drop-down: <b>YYYY/MM/Location</b> (default), <b>YYYY/MM/DD</b> (no place grouping), or <b>YYYY/MM/DD/Location</b>, or <b>Upload as they are (no YYYY/MM folders)</b> — no year, month, day or place folders are created and no date is added to filenames; files go straight into the target folder. Your choice is remembered as the next default.</p>
           </div>
 
           <div class="sub">
@@ -1702,8 +1702,8 @@
               <span class="callout-label">Recently Deleted photos are not imported</span>
               Photos and videos in the phone's Recently Deleted album (recoverable for 30 days) are still physically on the phone, so DMS reads the phone's Photos database to exclude them. If that database can't be read, the import falls back to the old behaviour and includes them. With Optimize iPhone Storage on, some originals live only in iCloud and can't be copied over the cable.
             </div>
-            <p><b>PDFs &amp; other files (Wi-Fi):</b> the iPhone's Files app and iCloud Drive can't be read over the cable. Put the phone on the same Wi-Fi as the computer, pick the destination folder, scan the QR code in the window with the iPhone camera, tap Choose Files, pick your PDFs, then tap Upload — they arrive in the chosen folder.</p>
-            <p><b>Send to iPhone (Wi-Fi):</b> the other way round — choose the folder to send (optionally with subfolders, photos only or videos only), scan the QR code with the phone to open the gallery page, and for each photo tap it, press and hold, and choose Add to Photos. The link works for 24 hours (or until DMS restarts).</p>
+            <p><b>PDFs &amp; other files (Wi-Fi):</b> the iPhone's Files app and iCloud Drive can't be read over the cable, so this tab uses a link. At the top, choose how the phone connects: <b>Same Wi-Fi</b> (fast — phone and computer on the same Wi-Fi network) or <b>Any network</b> (an internet tunnel — the phone can use cellular data or a different Wi-Fi; the first QR code takes about 15 seconds while the tunnel starts, and if it can't start DMS falls back to the Wi-Fi link). Then pick the destination folder, scan the QR code in the window with the iPhone camera, tap Choose Files, pick your PDFs, then tap Upload — they arrive in the chosen folder.</p>
+            <p><b>Send to iPhone (Wi-Fi):</b> the other way round — first choose Same Wi-Fi or Any network (as above), then choose the folder to send (optionally with subfolders, photos only or videos only), scan the QR code with the phone to open the gallery page, and for each photo tap it, press and hold, and choose Add to Photos. The link works for 24 hours (or until DMS restarts).</p>
           </div>
         </div>
       </section>
@@ -2171,7 +2171,7 @@
 
           <div class="sub">
             <h3>13.1 Sending and receiving files with “Upload/Download from iPhone”</h3>
-            <p>Click “Upload/Download from iPhone” in the toolbar above the document tree. The window has three tabs: import photos and videos over a USB cable; upload PDFs and other files over Wi-Fi by scanning a QR code with the phone into a chosen folder; and send photos from the computer to the iPhone. Full steps are in Section 4.17. To quit DMS, use the “Quit DMS” button in the web app, or Cmd+Q on a Mac.</p>
+            <p>Click “Upload/Download from iPhone” in the toolbar above the document tree. The window has three tabs: import photos and videos over a USB cable; upload PDFs and other files by scanning a QR code (Same Wi-Fi or Any network) with the phone into a chosen folder; and send photos from the computer to the iPhone. Full steps are in Section 4.17. To quit DMS, use the “Quit DMS” button in the web app, or Cmd+Q on a Mac.</p>
           </div>
         </div>
       </section>
