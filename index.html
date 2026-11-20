@@ -64,7 +64,7 @@
   code{ font-family:"SF Mono","JetBrains Mono",ui-monospace,"Courier New",monospace; background:var(--blue-soft); padding:1px 5px; border-radius:3px; font-size:.93em; }
   ::selection{background:var(--blue-soft);}
 
-  .wrap{max-width:1180px;margin:0 auto;padding:28px 20px 90px;position:relative;}
+  .wrap{max-width:1180px;margin:0 auto;padding:18px 20px 90px;position:relative;}
 
   .langtoggle{
     position:absolute; top:28px; right:20px; display:flex;
@@ -105,7 +105,7 @@
   .layout{ display:grid; grid-template-columns:220px 1fr; gap:36px; align-items:start; }
   @media (max-width:900px){ .layout{grid-template-columns:1fr;} }
 
-  nav.index{ position:sticky; top:20px; display:flex; flex-direction:column; }
+  nav.index{ position:sticky; top:84px; display:flex; flex-direction:column; }
   @media (max-width:900px){
     nav.index{ position:static; flex-direction:row; flex-wrap:wrap; gap:6px 10px;
       margin-bottom:8px; padding-bottom:14px; border-bottom:1px solid var(--rule); }
@@ -189,13 +189,56 @@
     .sub, .callout, table.kv, ol.steps > li{ break-inside:avoid; page-break-inside:avoid; }
     a{ color:var(--ink); text-decoration:none; }
   }
+
+  /* ---------- keyword search ---------- */
+  .searchbar{ position:sticky; top:0; z-index:50; background:var(--paper); padding:10px 0 12px; margin:0 0 18px;
+    display:flex; gap:12px; align-items:stretch; }
+  .searchwrap{ position:relative; flex:1; min-width:0; }
+  .searchbar .langtoggle{ position:static; display:flex; margin:0; flex:none; }
+  .searchbox{ display:flex; align-items:center; gap:8px; background:var(--paper-raised); border:1.5px solid var(--ink); padding:0 12px; }
+  .searchbox svg{ flex:none; color:var(--ink-faint); }
+  .searchbox input::-webkit-search-cancel-button{ -webkit-appearance:none; display:none; }
+  .searchbox input{ flex:1; min-width:0; border:none; outline:none; background:transparent; color:var(--ink);
+    font:inherit; font-size:15px; padding:11px 0; }
+  .searchbox:focus-within{ outline:2px solid var(--focus); outline-offset:2px; }
+  .searchbox .kbd{ font-family:"SF Mono","JetBrains Mono",ui-monospace,monospace; font-size:11px; color:var(--ink-faint);
+    border:1px solid var(--rule-strong); border-radius:3px; padding:0 5px; flex:none; }
+  .searchbox button.clear{ border:none; background:none; color:var(--ink-faint); cursor:pointer; font-size:18px; line-height:1; padding:4px; display:none; }
+  .searchbox.has-q button.clear{ display:block; }
+  .searchbox.has-q .kbd{ display:none; }
+  .sresults{ display:none; position:absolute; left:0; right:0; top:100%; margin-top:-4px; background:var(--paper-raised);
+    border:1.5px solid var(--ink); border-top:none; max-height:min(65vh,560px); overflow-y:auto; box-shadow:0 12px 28px rgba(0,0,0,.18); }
+  .sresults.open{ display:block; }
+  .sres-count{ font-size:12px; color:var(--ink-faint); padding:8px 14px; border-bottom:1px solid var(--rule); }
+  .sres{ display:block; width:100%; text-align:left; border:none; border-bottom:1px solid var(--rule); background:none;
+    color:var(--ink); font:inherit; padding:9px 14px; cursor:pointer; }
+  .sres:last-child{ border-bottom:none; }
+  .sres:hover, .sres.active{ background:var(--blue-soft); }
+  .sres-title{ font-weight:700; font-size:14px; }
+  .sres-chap{ font-size:11.5px; color:var(--ink-faint); margin-left:6px; font-weight:400; }
+  .sres-snip{ font-size:13px; color:var(--ink-soft); line-height:1.5; margin-top:2px; }
+  .sres mark, mark.shl{ background:#FFE38A; color:#181B22; padding:0 1px; border-radius:2px; }
+  .flash{ animation:flash 2.2s ease-out; }
+  @keyframes flash{ 0%,30%{ box-shadow:0 0 0 3px var(--focus); } 100%{ box-shadow:0 0 0 3px transparent; } }
+  @media print{ .searchbar{ display:none !important; } }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <div class="searchbar">
+    <div class="searchwrap" role="search">
+      <label class="searchbox" id="searchbox">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="search-input" type="search" autocomplete="off" spellcheck="false" aria-label="Search / 搜索" aria-controls="search-results">
+        <span class="kbd">/</span>
+        <button type="button" class="clear" id="search-clear" aria-label="Clear / 清除">×</button>
+      </label>
+      <div class="sresults" id="search-results" role="listbox"></div>
+    </div>
   <div class="langtoggle" role="group" aria-label="Language / 语言">
     <button type="button" id="btn-zh">中文</button>
     <button type="button" id="btn-en">EN</button>
+    </div>
   </div>
 
   <!-- ============================== ZH ============================== -->
@@ -2416,6 +2459,146 @@
 
   btnZh.addEventListener('click', function(){ setLang('zh'); });
   btnEn.addEventListener('click', function(){ setLang('en'); });
+})();
+
+/* ---------- keyword search ---------- */
+(function(){
+  var root = document.documentElement;
+  var input = document.getElementById('search-input');
+  var box = document.getElementById('searchbox');
+  var panel = document.getElementById('search-results');
+  var clearBtn = document.getElementById('search-clear');
+  var L = {
+    zh:{ ph:'搜索手册：输入功能关键词，如 照片、备份、密码、OCR…', none:'没有找到相关内容，换个关键词试试', n:function(k){return '找到 '+k+' 处相关内容';}, faq:'常见问题' },
+    en:{ ph:'Search the manual: e.g. photo, backup, password, OCR…', none:'No matches — try another keyword', n:function(k){return k+' matching section'+(k===1?'':'s');}, faq:'FAQ' }
+  };
+  var idx = { zh:null, en:null }, results = [], active = -1, seq = 0;
+  function lang(){ return root.getAttribute('data-lang')==='en' ? 'en' : 'zh'; }
+  function norm(t){ return t.replace(/\s+/g,' ').trim(); }
+
+  function build(lg){
+    if (idx[lg]) return idx[lg];
+    var cont = document.querySelector('.lang-'+lg), items = [];
+    cont.querySelectorAll('section.chapter').forEach(function(sec){
+      var ct = sec.querySelector('.chapter-title');
+      var chap = ct ? norm(ct.textContent) : L[lg].faq;
+      var subs = sec.querySelectorAll('.sub');
+      subs.forEach(function(sub){
+        var h = sub.querySelector('h3');
+        var tt = h ? norm(h.textContent) : chap, tx = norm(sub.textContent);
+        if (tx.indexOf(tt) === 0) tx = norm(tx.slice(tt.length));
+        items.push({ el:sub, title: tt, chap: chap, text: tx });
+      });
+      if (!subs.length) {
+        sec.querySelectorAll('.faq-q').forEach(function(q){
+          var a = q.nextElementSibling, t = norm(q.textContent);
+          items.push({ el:q, el2:a, title:t, chap:L[lg].faq, text: a ? norm(a.textContent) : '' });
+        });
+      }
+      var lead = sec.querySelector('.chapter-body > p.lead');
+      if (ct && lead) items.push({ el:sec, title:chap, chap:'', text: norm(lead.textContent), isChap:true });
+    });
+    return idx[lg] = items;
+  }
+
+  function esc(t){ return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function reEsc(t){ return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+  function terms(q){ return norm(q).toLowerCase().split(' ').filter(Boolean); }
+  function hl(text, ts){
+    if (!ts.length) return esc(text);
+    var re = new RegExp('('+ts.map(reEsc).join('|')+')','gi');
+    return text.split(re).map(function(part,i){ return i%2 ? '<mark>'+esc(part)+'</mark>' : esc(part); }).join('');
+  }
+  function snippet(text, ts){
+    var low = text.toLowerCase(), pos = -1;
+    ts.forEach(function(t){ var p = low.indexOf(t); if (p>=0 && (pos<0 || p<pos)) pos = p; });
+    if (pos < 0) pos = 0;
+    var start = Math.max(0, pos-40), end = Math.min(text.length, pos+110);
+    return (start>0?'…':'') + text.slice(start,end) + (end<text.length?'…':'');
+  }
+
+  function search(){
+    var q = input.value, ts = terms(q), lg = lang();
+    box.classList.toggle('has-q', !!q);
+    if (!ts.length){ panel.classList.remove('open'); panel.innerHTML=''; results=[]; return; }
+    results = build(lg).map(function(it){
+      var tl = it.title.toLowerCase(), xl = it.text.toLowerCase(), score = 0;
+      for (var i=0;i<ts.length;i++){
+        var t = ts[i]; if (xl.indexOf(t) < 0 && tl.indexOf(t) < 0) return null;
+        if (tl.indexOf(t) >= 0) score += 10;
+        score += Math.min(xl.split(t).length-1, 5);
+      }
+      if (it.isChap) score -= 3;
+      return { it:it, score:score };
+    }).filter(Boolean).sort(function(a,b){ return b.score-a.score; }).slice(0,40);
+    var html = '<div class="sres-count">'+(results.length ? L[lg].n(results.length) : L[lg].none)+'</div>';
+    results.forEach(function(r,i){
+      html += '<button type="button" class="sres" role="option" data-i="'+i+'"><div class="sres-title">'+hl(r.it.title,ts)+
+        (r.it.chap ? '<span class="sres-chap">'+esc(r.it.chap)+'</span>' : '')+'</div><div class="sres-snip">'+hl(snippet(r.it.text,ts),ts)+'</div></button>';
+    });
+    panel.innerHTML = html; panel.classList.add('open'); setActive(results.length ? 0 : -1);
+  }
+
+  function setActive(i){
+    active = i;
+    panel.querySelectorAll('.sres').forEach(function(b,j){ b.classList.toggle('active', j===i); if (j===i) b.scrollIntoView({block:'nearest'}); });
+  }
+
+  function clearMarks(){
+    document.querySelectorAll('mark.shl').forEach(function(m){ var p = m.parentNode; p.replaceChild(document.createTextNode(m.textContent), m); p.normalize(); });
+  }
+  function markIn(el, ts){
+    if (!el || !ts.length) return;
+    var re = new RegExp(ts.map(reEsc).join('|'),'gi'), nodes = [];
+    var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), n;
+    while ((n = w.nextNode())) if (n.nodeValue.trim()) nodes.push(n);
+    nodes.forEach(function(node){
+      var v = node.nodeValue; re.lastIndex = 0; if (!re.test(v)) return; re.lastIndex = 0;
+      var frag = document.createDocumentFragment(), last = 0, m;
+      while ((m = re.exec(v))) {
+        frag.appendChild(document.createTextNode(v.slice(last, m.index)));
+        var mk = document.createElement('mark'); mk.className='shl'; mk.textContent = m[0]; frag.appendChild(mk);
+        last = m.index + m[0].length;
+      }
+      frag.appendChild(document.createTextNode(v.slice(last)));
+      node.parentNode.replaceChild(frag, node);
+    });
+  }
+
+  function go(i){
+    var r = results[i]; if (!r) return;
+    var ts = terms(input.value), it = r.it, my = ++seq;
+    clearMarks(); markIn(it.el, ts); markIn(it.el2, ts);
+    panel.classList.remove('open');
+    var y = it.el.getBoundingClientRect().top + window.pageYOffset - document.querySelector('.searchbar').offsetHeight - 12;
+    window.scrollTo({ top:y, behavior:'smooth' });
+    it.el.classList.remove('flash'); void it.el.offsetWidth; it.el.classList.add('flash');
+    setTimeout(function(){ if (my===seq) it.el.classList.remove('flash'); }, 2300);
+  }
+
+  function setPh(){ input.placeholder = L[lang()].ph; }
+  setPh();
+  new MutationObserver(function(){ setPh(); clearMarks(); if (input.value) search(); })
+    .observe(root, { attributes:true, attributeFilter:['data-lang'] });
+
+  input.addEventListener('input', search);
+  input.addEventListener('focus', function(){ if (input.value) search(); });
+  input.addEventListener('keydown', function(e){
+    if (e.key==='ArrowDown'){ e.preventDefault(); if (results.length) setActive(Math.min(active+1, results.length-1)); }
+    else if (e.key==='ArrowUp'){ e.preventDefault(); if (results.length) setActive(Math.max(active-1, 0)); }
+    else if (e.key==='Enter'){ e.preventDefault(); if (!panel.classList.contains('open')) search(); else go(active); }
+    else if (e.key==='Escape'){ if (panel.classList.contains('open')) panel.classList.remove('open'); else { input.value=''; search(); clearMarks(); input.blur(); } }
+  });
+  panel.addEventListener('mousedown', function(e){ e.preventDefault(); });
+  panel.addEventListener('click', function(e){ var b = e.target.closest('.sres'); if (b) go(+b.getAttribute('data-i')); });
+  clearBtn.addEventListener('click', function(){ input.value=''; search(); clearMarks(); input.focus(); });
+  input.addEventListener('blur', function(){ setTimeout(function(){ if (document.activeElement !== input) panel.classList.remove('open'); }, 120); });
+  document.addEventListener('keydown', function(e){
+    var tag = (document.activeElement||{}).tagName;
+    if ((e.key==='/' && tag!=='INPUT' && tag!=='TEXTAREA') || ((e.metaKey||e.ctrlKey) && e.key.toLowerCase()==='k')) {
+      e.preventDefault(); input.focus(); input.select();
+    }
+  });
 })();
 </script>
 
