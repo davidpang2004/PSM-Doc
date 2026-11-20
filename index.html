@@ -2469,8 +2469,8 @@
   var panel = document.getElementById('search-results');
   var clearBtn = document.getElementById('search-clear');
   var L = {
-    zh:{ ph:'搜索手册：输入功能关键词，如 照片、备份、密码、OCR…', none:'没有找到相关内容，换个关键词试试', n:function(k){return '找到 '+k+' 处相关内容';}, faq:'常见问题' },
-    en:{ ph:'Search the manual: e.g. photo, backup, password, OCR…', none:'No matches — try another keyword', n:function(k){return k+' matching section'+(k===1?'':'s');}, faq:'FAQ' }
+    zh:{ ph:'搜索手册：输入功能关键词，如 照片、备份、密码、OCR…', none:'没有找到相关内容，换个关键词试试', n:function(k){return '找到 '+k+' 处相关内容';}, also:'同时搜索：', faq:'常见问题' },
+    en:{ ph:'Search the manual: e.g. photo, backup, password, OCR…', none:'No matches — try another keyword', n:function(k){return k+' matching section'+(k===1?'':'s');}, also:'also searched: ', faq:'FAQ' }
   };
   var idx = { zh:null, en:null }, results = [], active = -1, seq = 0;
   function lang(){ return root.getAttribute('data-lang')==='en' ? 'en' : 'zh'; }
@@ -2503,15 +2503,98 @@
 
   function esc(t){ return t.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
   function reEsc(t){ return t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
-  function terms(q){ return norm(q).toLowerCase().split(' ').filter(Boolean); }
+  /* Synonym groups: typing any word in a group also finds the others.
+     Edit freely — one group per line, lower-case for English. */
+  var SYN = [
+    ['照片','相片','图片','图像','相册','photo','photograph','picture','pic','image','img'],
+    ['视频','录像','影片','video','movie','clip'],
+    ['文档','文件','资料','document','doc','file'],
+    ['文件夹','目录','folder','directory','dir'],
+    ['删除','移除','删掉','delete','remove','erase','trash'],
+    ['恢复','还原','找回','撤销','restore','recover','undo','undelete'],
+    ['备份','导出','backup','back up','export'],
+    ['导入','import'],
+    ['上传','添加','upload','add'],
+    ['下载','保存到本地','download'],
+    ['搜索','查找','查询','搜寻','寻找','search','find','lookup','look up'],
+    ['密码','口令','password','passcode'],
+    ['登录','登入','login','log in','sign in','signin'],
+    ['安全','加密','保护','security','encrypt','encryption','protect','protection'],
+    ['设置','配置','选项','偏好','settings','setting','config','configuration','options','preferences'],
+    ['分享','共享','share','sharing'],
+    ['发送','send'],
+    ['邮件','邮箱','电子邮件','email','e-mail','mail','smtp'],
+    ['手机','苹果手机','iphone','phone','mobile','cellphone'],
+    ['人脸','面孔','人物','face','faces','person','people'],
+    ['位置','地点','定位','gps','location','place'],
+    ['日期','date'],
+    ['重命名','改名','rename'],
+    ['移动','拖动','拖拽','move','drag'],
+    ['链接','引用','link','reference','shortcut'],
+    ['打印','print','printing'],
+    ['扫描','scan','scanner'],
+    ['条码','条形码','二维码','barcode','qr','qr code','qrcode'],
+    ['文字识别','识别文字','ocr','text recognition'],
+    ['翻译','translate','translation'],
+    ['ai','人工智能','智能','gemini','deepseek'],
+    ['密钥','api key','apikey','api'],
+    ['图表','趋势','chart','graph','trend','trends'],
+    ['数据手册','报告','databook','data book','report'],
+    ['合并','combine','merge'],
+    ['重复','相似','duplicate','duplicates','similar'],
+    ['安装','install','installation','setup'],
+    ['退出','关闭','quit','exit'],
+    ['语言','language','chinese','english'],
+    ['语音','听写','麦克风','voice','dictation','dictate','microphone','mic'],
+    ['云盘','同步','cloud','sync','onedrive','dropbox','icloud'],
+    ['项目','project'],
+    ['预览','查看','打开','view','open','preview'],
+    ['编辑','修改','edit','modify','change'],
+    ['标签','tag','label'],
+    ['描述','说明','备注','description','note','notes'],
+    ['参数','关键参数','parameter','parameters','param'],
+    ['错误','报错','失败','error','fail','failed','problem'],
+    ['压缩包','zip'],
+    ['文件树','tree']
+  ];
+  var synMap = {};
+  SYN.forEach(function(g){ g.forEach(function(w){ var k = w.toLowerCase(); (synMap[k] = synMap[k] || []).push(g); }); });
+  /* short Latin words (ai, mic, add, qr…) must match as whole words, or "ai" would hit "main" */
+  function src(w, typed){
+    var strict = /^[a-z0-9]{1,3}$/.test(w) && (!typed || synMap[w]);
+    return strict ? '\\b'+reEsc(w)+'\\b' : reEsc(w);
+  }
+  function expand(t){
+    var out = [t];
+    function addGroup(k){ (synMap[k] || []).forEach(function(g){ g.forEach(function(w){ w = w.toLowerCase(); if (out.indexOf(w) < 0) out.push(w); }); }); }
+    addGroup(t);
+    if (/^[a-z]{4,}s$/.test(t)) { var sg = t.slice(0,-1); if (out.indexOf(sg) < 0) out.push(sg); addGroup(sg); }
+    return out.map(function(w,i){ return { w:w, s:src(w, i===0) }; });
+  }
+  function terms(q){
+    var words = norm(q).toLowerCase(), groups = [];
+    /* keep multi-word synonyms like "log in" / "api key" together */
+    Object.keys(synMap).forEach(function(k){
+      if (k.indexOf(' ') > 0 && (' '+words+' ').indexOf(' '+k+' ') >= 0) { groups.push(expand(k)); words = (' '+words+' ').replace(' '+k+' ',' ').trim(); }
+    });
+    words.split(' ').filter(Boolean).forEach(function(w){ groups.push(expand(w)); });
+    return groups;
+  }
+  function flat(ts){
+    var a = [], seen = {};
+    ts.forEach(function(g){ g.forEach(function(o){ if (!seen[o.s]) { seen[o.s] = 1; a.push(o); } }); });
+    return a.sort(function(x,y){ return y.w.length - x.w.length; });
+  }
+  function reOf(ts){ return new RegExp(flat(ts).map(function(o){ return o.s; }).join('|'), 'gi'); }
+  function count(text, o){ var m = text.match(new RegExp(o.s, 'gi')); return m ? m.length : 0; }
   function hl(text, ts){
     if (!ts.length) return esc(text);
-    var re = new RegExp('('+ts.map(reEsc).join('|')+')','gi');
+    var re = new RegExp('('+reOf(ts).source+')','gi');
     return text.split(re).map(function(part,i){ return i%2 ? '<mark>'+esc(part)+'</mark>' : esc(part); }).join('');
   }
   function snippet(text, ts){
     var low = text.toLowerCase(), pos = -1;
-    ts.forEach(function(t){ var p = low.indexOf(t); if (p>=0 && (pos<0 || p<pos)) pos = p; });
+    var m = reOf(ts).exec(text); if (m) pos = m.index;
     if (pos < 0) pos = 0;
     var start = Math.max(0, pos-40), end = Math.min(text.length, pos+110);
     return (start>0?'…':'') + text.slice(start,end) + (end<text.length?'…':'');
@@ -2524,14 +2607,24 @@
     results = build(lg).map(function(it){
       var tl = it.title.toLowerCase(), xl = it.text.toLowerCase(), score = 0;
       for (var i=0;i<ts.length;i++){
-        var t = ts[i]; if (xl.indexOf(t) < 0 && tl.indexOf(t) < 0) return null;
-        if (tl.indexOf(t) >= 0) score += 10;
-        score += Math.min(xl.split(t).length-1, 5);
+        var g = ts[i], hit = false, inT = false, cnt = 0;
+        for (var j=0;j<g.length;j++){
+          var inTitle = count(tl, g[j]) > 0, n = count(xl, g[j]);
+          if (inTitle || n) hit = true;
+          if (inTitle) inT = true;
+          cnt += n * (j === 0 ? 2 : 1);
+        }
+        if (!hit) return null;
+        if (inT) score += 10;
+        score += Math.min(cnt, 6);
       }
       if (it.isChap) score -= 3;
       return { it:it, score:score };
     }).filter(Boolean).sort(function(a,b){ return b.score-a.score; }).slice(0,40);
-    var html = '<div class="sres-count">'+(results.length ? L[lg].n(results.length) : L[lg].none)+'</div>';
+    var extra = [];
+    ts.forEach(function(g){ g.slice(1).forEach(function(o){ var cjk = /[\u3400-\u9fff]/.test(o.w); if ((lg==='zh') === cjk && extra.indexOf(o.w) < 0) extra.push(o.w); }); });
+    var html = '<div class="sres-count">'+(results.length ? L[lg].n(results.length) : L[lg].none)+
+      (extra.length ? ' · '+L[lg].also+esc(extra.join(lg==='zh' ? '、' : ', ')) : '')+'</div>';
     results.forEach(function(r,i){
       html += '<button type="button" class="sres" role="option" data-i="'+i+'"><div class="sres-title">'+hl(r.it.title,ts)+
         (r.it.chap ? '<span class="sres-chap">'+esc(r.it.chap)+'</span>' : '')+'</div><div class="sres-snip">'+hl(snippet(r.it.text,ts),ts)+'</div></button>';
@@ -2549,7 +2642,7 @@
   }
   function markIn(el, ts){
     if (!el || !ts.length) return;
-    var re = new RegExp(ts.map(reEsc).join('|'),'gi'), nodes = [];
+    var re = reOf(ts), nodes = [];
     var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null), n;
     while ((n = w.nextNode())) if (n.nodeValue.trim()) nodes.push(n);
     nodes.forEach(function(node){
