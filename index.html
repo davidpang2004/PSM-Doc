@@ -216,6 +216,8 @@
   .sres:hover, .sres.active{ background:var(--blue-soft); }
   .sres-title{ font-weight:700; font-size:14px; }
   .sres-chap{ font-size:11.5px; color:var(--ink-faint); margin-left:6px; font-weight:400; }
+  .sres-badge{ float:right; padding-left:8px; font-family:"SF Mono",ui-monospace,monospace; font-size:11px; font-weight:400; color:var(--ink-faint); }
+  .sres-badge.full{ color:#1F7A4D; font-weight:700; }
   .sres-snip{ font-size:13px; color:var(--ink-soft); line-height:1.5; margin-top:2px; }
   .sres mark, mark.shl{ background:#FFE38A; color:#181B22; padding:0 1px; border-radius:2px; }
   .flash{ animation:flash 2.2s ease-out; }
@@ -2469,8 +2471,8 @@
   var panel = document.getElementById('search-results');
   var clearBtn = document.getElementById('search-clear');
   var L = {
-    zh:{ ph:'搜索手册：输入功能关键词，如 照片、备份、密码、OCR…', none:'没有找到相关内容，换个关键词试试', n:function(k){return '找到 '+k+' 处相关内容';}, also:'同时搜索：', faq:'常见问题' },
-    en:{ ph:'Search the manual: e.g. photo, backup, password, OCR…', none:'No matches — try another keyword', n:function(k){return k+' matching section'+(k===1?'':'s');}, also:'also searched: ', faq:'FAQ' }
+    zh:{ ph:'搜索手册：输入功能关键词，如 照片、备份、密码、OCR…', none:'没有找到相关内容，换个关键词试试', n:function(k){return '找到 '+k+' 处相关内容';}, also:'同时搜索：', badge:function(m,n){return '包含 '+n+' 个关键词中的 '+m+' 个';}, faq:'常见问题' },
+    en:{ ph:'Search the manual: e.g. photo, backup, password, OCR…', none:'No matches — try another keyword', n:function(k){return k+' matching section'+(k===1?'':'s');}, also:'also searched: ', badge:function(m,n){return 'Contains '+m+' of '+n+' keywords';}, faq:'FAQ' }
   };
   var idx = { zh:null, en:null }, results = [], active = -1, seq = 0;
   function lang(){ return root.getAttribute('data-lang')==='en' ? 'en' : 'zh'; }
@@ -2605,7 +2607,9 @@
     box.classList.toggle('has-q', !!q);
     if (!ts.length){ panel.classList.remove('open'); panel.innerHTML=''; results=[]; return; }
     results = build(lg).map(function(it){
-      var tl = it.title.toLowerCase(), xl = it.text.toLowerCase(), score = 0;
+      /* Any keyword is enough; sections containing MORE of the keywords
+         rank higher (matched count first, then title hits / frequency). */
+      var tl = it.title.toLowerCase(), xl = it.text.toLowerCase(), score = 0, matched = 0;
       for (var i=0;i<ts.length;i++){
         var g = ts[i], hit = false, inT = false, cnt = 0;
         for (var j=0;j<g.length;j++){
@@ -2614,20 +2618,25 @@
           if (inTitle) inT = true;
           cnt += n * (j === 0 ? 2 : 1);
         }
-        if (!hit) return null;
+        if (!hit) continue;
+        matched++;
         if (inT) score += 10;
         score += Math.min(cnt, 6);
       }
+      if (!matched) return null;
       if (it.isChap) score -= 3;
-      return { it:it, score:score };
-    }).filter(Boolean).sort(function(a,b){ return b.score-a.score; }).slice(0,40);
+      return { it:it, score:score, matched:matched };
+    }).filter(Boolean).sort(function(a,b){ return (b.matched-a.matched) || (b.score-a.score); }).slice(0,40);
     var extra = [];
     ts.forEach(function(g){ g.slice(1).forEach(function(o){ var cjk = /[\u3400-\u9fff]/.test(o.w); if ((lg==='zh') === cjk && extra.indexOf(o.w) < 0) extra.push(o.w); }); });
     var html = '<div class="sres-count">'+(results.length ? L[lg].n(results.length) : L[lg].none)+
       (extra.length ? ' · '+L[lg].also+esc(extra.join(lg==='zh' ? '、' : ', ')) : '')+'</div>';
     results.forEach(function(r,i){
-      html += '<button type="button" class="sres" role="option" data-i="'+i+'"><div class="sres-title">'+hl(r.it.title,ts)+
-        (r.it.chap ? '<span class="sres-chap">'+esc(r.it.chap)+'</span>' : '')+'</div><div class="sres-snip">'+hl(snippet(r.it.text,ts),ts)+'</div></button>';
+      html += '<button type="button" class="sres" role="option" data-i="'+i+'"><div class="sres-title">'+
+        (ts.length > 1 ? '<span class="sres-badge'+(r.matched===ts.length?' full':'')+'" title="'+esc(L[lg].badge(r.matched, ts.length))+'">'+r.matched+'/'+ts.length+'</span>' : '')+
+        hl(r.it.title,ts)+
+        (r.it.chap ? '<span class="sres-chap">'+esc(r.it.chap)+'</span>' : '')+
+        '</div><div class="sres-snip">'+hl(snippet(r.it.text,ts),ts)+'</div></button>';
     });
     panel.innerHTML = html; panel.classList.add('open'); setActive(results.length ? 0 : -1);
   }
