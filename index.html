@@ -253,7 +253,7 @@
       <p class="tb-sub">DMS 是一款运行在您自己电脑上的文档与照片管理系统。它把您硬盘上的真实文件，组织成一棵可以随意展开、搜索的文件夹树，全部通过浏览器操作，不上传到任何云端服务器。本手册假定您此前从未使用过 DMS，会从"如何安装"开始，逐步讲到每一项功能的具体点击步骤。</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-11-09</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-11-20</div></div>
       <div class="tb-field"><div class="tb-field-label disp">适用对象</div><div class="tb-field-value mono">完全没用过 DMS 的新用户</div></div>
       <div class="tb-field"><div class="tb-field-label disp">支持平台</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">章节</div><div class="tb-field-value mono">01–17 + 常见问题</div></div>
@@ -264,8 +264,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">查看全部历史版本</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261109-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261109-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261109-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261109-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261120-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261120-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261120-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261120-EN.pdf</span></a>
     </div>
   </div>
 
@@ -599,7 +599,11 @@
             </ol>
             <div class="callout note">
               <span class="callout-label">说明</span>
-              本功能完全离线运行（基于开源 zbar 库），不上传任何数据，也不需要 AI 密钥；但要求条码清晰、无遮挡，四周留有空白边框。手机截图分享的二维码（尤其是中间嵌有图标、或背景色直接顶到条码边缘的，如微信“扫码入群”图片）通常无法识别，这是已知局限，并非软件故障。
+              本功能完全离线运行（基于开源 zxing-cpp、zbar 和 OpenCV 库），不上传任何数据，也不需要 AI 密钥。手机截图分享的二维码——包括中间嵌有图标、彩色二维码、或背景色直接顶到条码边缘的图片（如微信“扫码入群”图片）——现在也能识别：第一遍没有结果时，DMS 会自动对图片做清理、摆正后再试。严重模糊或被截掉一部分的条码仍可能无法识别。
+            </div>
+            <div class="callout tip">
+              <span class="callout-label">微信二维码</span>
+              微信群邀请等微信二维码（weixin.qq.com/g/…）可以正确识别，但这个链接只有在微信里扫码才有效——粘贴到浏览器、或用手机相机扫，都进不了群。DMS 识别到这类二维码时会显示提示。加入方法：微信【+ → 扫一扫】，点相册图标选这张图；或把图片发到任意聊天（如文件传输助手），长按选择“识别图中二维码”。微信群二维码只有 7 天有效期。
             </div>
           </div>
 
@@ -789,7 +793,7 @@
               <li>输入编号、文件名、描述文字或元数据关键词，结果会实时过滤显示。</li>
             </ol>
             <p>搜索范围包括文件名、OCR 识别出的全文，以及您为文档添加的所有元数据字段（见第 7 章）。系统还会自动标记出可能不可靠的乱码 OCR 结果，避免它们干扰搜索。</p>
-            <p>输入多个词（用空格分隔）时，搜索框旁的"多词匹配"决定它们怎么组合：<b>全部包含 (AND)</b>（默认，必须同时包含每一个词才算匹配）、<b>任一包含 (OR)</b>（包含其中任意一个词就算匹配，比如同时输入"发票 收据 账单"这类近义词时很好用）、<b>整句匹配</b>（不拆分成单独的词，把输入框里的全部内容当一句话原样精确匹配，适合确定就要找某一句原文的时候）。</p>
+            <p>输入多个词（用空格分隔）时，搜索框旁的"多词匹配"决定它们怎么组合：<b>任一包含 (OR)</b>（默认，包含其中任意一个词就算匹配，并按包含的词数排序——包含全部词的排在最前面，每条结果右侧显示“2/3”这样的标记，表示包含了几个词；同时输入"发票 收据 账单"这类近义词时很好用）、<b>全部包含 (AND)</b>（必须同时包含每一个词才算匹配，结果同样排序）、<b>整句匹配</b>（不拆分成单独的词，把输入框里的全部内容当一句话原样精确匹配，适合确定就要找某一句原文的时候）。</p>
           </div>
 
           <div class="sub">
@@ -1330,7 +1334,7 @@
 
       <footer>
         <span>DMS.app — 用户手册</span>
-        <span>面向零基础新用户编写，根据当前版本整理 · 2026-11-09</span>
+        <span>面向零基础新用户编写，根据当前版本整理 · 2026-11-20</span>
       </footer>
 
     </main>
@@ -1348,7 +1352,7 @@
       <p class="tb-sub">DMS is a document and photo management system that runs on your own computer. It organizes the real files on your hard drive into a folder tree you can browse and search, all through your web browser — nothing is uploaded to any cloud server. This manual assumes you have never used DMS before: it starts with "how do I install it" and walks through the exact clicks for every feature.</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-11-09</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-11-20</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Audience</div><div class="tb-field-value mono">First-time DMS users</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Platforms</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Chapters</div><div class="tb-field-value mono">01–17 + FAQ</div></div>
@@ -1359,8 +1363,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">See all past releases</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261109-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261109-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261109-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261109-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261120-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261120-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261120-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261120-EN.pdf</span></a>
     </div>
   </div>
 
@@ -1693,7 +1697,11 @@
             </ol>
             <div class="callout note">
               <span class="callout-label">Good to know</span>
-              This runs entirely offline (open-source zbar library), sends nothing anywhere and needs no AI key — but the code must be sharp, unobstructed and have a blank margin around it. QR codes shared as phone screenshots (especially with a logo in the middle, or a background running right up to the edge, like a WeChat “join group” image) usually can't be read; that's a known limitation, not a bug.
+              This runs entirely offline (open-source zxing-cpp, zbar and OpenCV libraries), sends nothing anywhere and needs no AI key. QR codes shared as phone screenshots — including ones with a logo in the middle, colored codes, or a background running right up to the edge, like a WeChat “join group” image — can now be read too: if the first pass finds nothing, DMS automatically retries with cleaned-up, straightened copies of the image. A badly blurred or partly cut-off code may still fail.
+            </div>
+            <div class="callout tip">
+              <span class="callout-label">WeChat codes</span>
+              WeChat codes such as group invites (weixin.qq.com/g/…) decode correctly, but the link only works when scanned inside WeChat itself — pasting it into a browser or scanning with the iPhone Camera won't join the group. DMS shows a reminder when it detects one. To join: in WeChat tap + → Scan, then the photo icon, and pick the image; or send the image to any chat (e.g. File Transfer), long-press it and choose “Scan QR Code in Image”. WeChat group codes expire after 7 days.
             </div>
           </div>
 
@@ -1883,7 +1891,7 @@
               <li>Type a number, filename, description, or metadata keyword — results filter live as you type.</li>
             </ol>
             <p>Search covers filenames, the full text from OCR, and every metadata field you've added to a document (Chapter 7). DMS also flags likely-unreliable garbled OCR output so it doesn't pollute your search results.</p>
-            <p>When you type more than one word, the "Multi-word match" control next to the search box decides how they combine: <b>All words (AND)</b> (the default — a document must contain every word you typed to match), <b>Any word (OR)</b> (matches if it contains at least one, handy when you're not sure which of several related terms a document uses, like "invoice receipt bill"), or <b>Whole sentence</b> (skips splitting into words and matches the entire box's contents verbatim as one exact phrase — useful when you know exactly which line you're looking for).</p>
+            <p>When you type more than one word, the "Multi-word match" control next to the search box decides how they combine: <b>Any word (OR)</b> (the default — matches if it contains at least one word, and results are ranked by how many of the words they contain, with documents containing all of them first; each result shows a badge like “2/3”; handy when you're not sure which of several related terms a document uses, like "invoice receipt bill"), <b>All words (AND)</b> (a document must contain every word you typed; results are ranked too), or <b>Whole sentence</b> (skips splitting into words and matches the entire box's contents verbatim as one exact phrase — useful when you know exactly which line you're looking for).</p>
           </div>
 
           <div class="sub">
@@ -2424,7 +2432,7 @@
 
       <footer>
         <span>DMS.app — User Manual</span>
-        <span>Written for first-time users, compiled against the current release · rev. 2026-11-09</span>
+        <span>Written for first-time users, compiled against the current release · rev. 2026-11-20</span>
       </footer>
 
     </main>
