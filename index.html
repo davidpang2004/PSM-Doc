@@ -253,7 +253,7 @@
       <p class="tb-sub">DMS 是一款运行在您自己电脑上的文档与照片管理系统。它把您硬盘上的真实文件，组织成一棵可以随意展开、搜索的文件夹树，全部通过浏览器操作，不上传到任何云端服务器。本手册假定您此前从未使用过 DMS，会从"如何安装"开始，逐步讲到每一项功能的具体点击步骤。</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-11-20</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">文档</div><div class="tb-field-value mono">用户手册 · 2026-11-21</div></div>
       <div class="tb-field"><div class="tb-field-label disp">适用对象</div><div class="tb-field-value mono">完全没用过 DMS 的新用户</div></div>
       <div class="tb-field"><div class="tb-field-label disp">支持平台</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">章节</div><div class="tb-field-value mono">01–17 + 常见问题</div></div>
@@ -264,8 +264,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">查看全部历史版本</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261120-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261120-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261120-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261120-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261121-CN.pdf">下载中文手册 PDF <span class="sub">DMS_User_Manual-261121-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261121-EN.pdf">下载英文手册 PDF <span class="sub">DMS_User_Manual-261121-EN.pdf</span></a>
     </div>
   </div>
 
@@ -417,6 +417,10 @@
             <div class="callout note">
               <span class="callout-label">自动合并</span>
               如果拖入的目标文件夹内已经存在一个同名子文件夹，DMS 会自动把两者合并，源文件夹里的文档和子文件夹会全部并入目标文件夹，不会出现重复的同名文件夹。
+            </div>
+            <div class="callout note">
+              <span class="callout-label">拖放后停在哪个文件夹</span>
+              把文档卡片拖到左侧树的某个文件夹上松手会<b>移动</b>文档（按住 Option/Alt 松手则是<b>关联</b>）；也可以把文件从访达/资源管理器直接拖到树里的文件夹上上传。拖放之后停在哪个文件夹由树形工具栏上的<b>“拖放后”</b>按钮决定，单击切换：“转到目标文件夹”（默认，打开刚放入的文件夹）或“停在原文件夹”（继续停留在拖出的文件夹，适合从同一个文件夹里连续整理很多文档）。DMS 会记住你的选择。
             </div>
           </div>
 
@@ -750,10 +754,14 @@
 
           <div class="sub">
             <h3>5.10 PDF 翻译、保存译文与原文｜译文对照</h3>
-            <p>打开 PDF，点击查看器顶部的“中文翻译”，右半边会显示译文，左边是原文，两边同步滚动。右上角的下拉框可选“快速翻译（免费）”（默认，无需 AI 密钥）、Gemini 或 DeepSeek；后两者需要先配置密钥（见第 8 章）。</p>
+            <p>打开 PDF，点击查看器顶部的“翻译”。原文留在左边，右半边是一个简单的设置栏，选好三项后点“开始翻译”即可：</p>
             <ul class="plain">
-              <li><b>保存为 PDF</b>：把整份译文按页排成纯文字 PDF，存进原文所在的文件夹，文件名为“原文件名 + 语言名”。</li>
-              <li><b>保存为 PDF（保持版式）</b>：把译文放回原文所在的位置，保留表格、分栏等版式（要求原 PDF 有可选中的文字，可能需要一两分钟）。</li>
+              <li><b>原文语言</b>：保持“自动检测”，或者自己指定文档的语言，结果更可靠。中间的“⇄”按钮可交换原文语言和目标语言。</li>
+              <li><b>翻译成</b>：目标语言，默认简体中文，另有繁体中文、英文等约 50 种语言，任意两种语言之间都可以互译（例如日文→英文）。</li>
+              <li><b>翻译引擎</b>：“Google 翻译”（免费、快速，无需密钥），或 AI 翻译“AI · Gemini”/“AI · DeepSeek”——AI 会结合上下文理解，译文通常更准确，但需要先配置密钥（见第 8 章）；没配置时会提示，并给出“打开 AI 设置”链接。</li>
+              <li><b>自动保存</b>：DMS 把整份文档翻译完，保留原来的表格、分栏等版式，自动存进原文所在的文件夹，文件名为“原文件名 + 语言名”，完成后直接切换到“原文 | 译文”左右对照。不再需要点“保存为 PDF（保持版式）”。文档较长时可能需要一两分钟。</li>
+              <li><b>扫描件</b>：没有可选中文字的 PDF 会自动改为逐页识别文字后翻译，保存为纯文字版译文，页数与原文对应。</li>
+              <li><b>已翻译过</b>：同一语言已有译文时会提示，可选“打开”已有译文或“重新翻译”。选过的语言和引擎会被记住。</li>
               <li><b>原文 | 译文</b>：保存过译文之后，打开原文或译文任意一份，点击这个按钮即可左右对照，同步滚动。</li>
               <li><b>编辑译文</b>：点击右栏的“编辑”可以逐页（版式译文则逐段）修改，支持语音输入；先选中文字再点调色板里的颜色，可以给所选文字标色或高亮，“清除”可去掉颜色，改完点“保存”。</li>
             </ul>
@@ -1304,7 +1312,7 @@
       <section class="chapter">
         <div class="chapter-body">
           <div class="faq-q">Gemini 提示“API 额度已用完”（429）怎么办？</div>
-          <div class="faq-a">免费版 Gemini 有每日（或每分钟）额度上限，提示里会写明大约多久后恢复。可以稍后重试、为该 Google 项目开通计费、换另一个 API 密钥，或改用 DeepSeek；翻译可以改选“快速翻译（免费）”。</div>
+          <div class="faq-a">免费版 Gemini 有每日（或每分钟）额度上限，提示里会写明大约多久后恢复。可以稍后重试、为该 Google 项目开通计费、换另一个 API 密钥，或改用 DeepSeek；翻译可以改选“Google 翻译”。</div>
 
           <div class="faq-q">忘记了应用登录密码怎么办？</div>
           <div class="faq-a">可以手动编辑本机的配置文件重置密码。文件位于 Mac 的 <span class="mono">~/.pms_dms_config.json</span> 或 Windows 的 <span class="mono">C:\Users\yourname\.pms_dms_config.json</span>。用文本编辑器打开，把其中 <span class="mono">password_hash</span> 和 <span class="mono">password_salt</span> 两个字段的值都改成空字符串 <span class="mono">""</span>，保存后重启 DMS，密码保护即被移除。（这是应用登录密码，与第 15.2 节的"项目密码"是两回事，项目密码保存在项目文件夹内，同理可用文本编辑器打开项目文件夹里的相应配置文件清空重置。）</div>
@@ -1334,7 +1342,7 @@
 
       <footer>
         <span>DMS.app — 用户手册</span>
-        <span>面向零基础新用户编写，根据当前版本整理 · 2026-11-20</span>
+        <span>面向零基础新用户编写，根据当前版本整理 · 2026-11-21</span>
       </footer>
 
     </main>
@@ -1352,7 +1360,7 @@
       <p class="tb-sub">DMS is a document and photo management system that runs on your own computer. It organizes the real files on your hard drive into a folder tree you can browse and search, all through your web browser — nothing is uploaded to any cloud server. This manual assumes you have never used DMS before: it starts with "how do I install it" and walks through the exact clicks for every feature.</p>
     </div>
     <div class="tb-fields">
-      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-11-20</div></div>
+      <div class="tb-field"><div class="tb-field-label disp">Document</div><div class="tb-field-value mono">User Manual — rev. 2026-11-21</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Audience</div><div class="tb-field-value mono">First-time DMS users</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Platforms</div><div class="tb-field-value mono">macOS · Windows</div></div>
       <div class="tb-field"><div class="tb-field-label disp">Chapters</div><div class="tb-field-value mono">01–17 + FAQ</div></div>
@@ -1363,8 +1371,8 @@
       <a class="dl-btn secondary" href="https://github.com/davidpang2004/PMS-002/releases">See all past releases</a>
     </div>
     <div class="dl-row">
-      <a class="dl-btn secondary" href="DMS_User_Manual-261120-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261120-CN.pdf</span></a>
-      <a class="dl-btn secondary" href="DMS_User_Manual-261120-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261120-EN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261121-CN.pdf">Download Manual PDF (Chinese) <span class="sub">DMS_User_Manual-261121-CN.pdf</span></a>
+      <a class="dl-btn secondary" href="DMS_User_Manual-261121-EN.pdf">Download Manual PDF (English) <span class="sub">DMS_User_Manual-261121-EN.pdf</span></a>
     </div>
   </div>
 
@@ -1515,6 +1523,10 @@
             <div class="callout note">
               <span class="callout-label">Automatic merging</span>
               If the target folder already has a subfolder with the exact same name, DMS automatically merges the two — every document and subfolder from the source is folded into the target, so you never end up with duplicate same-named folders.
+            </div>
+            <div class="callout note">
+              <span class="callout-label">Which folder stays open after a drop</span>
+              Dropping a document card onto a folder in the tree <b>moves</b> it (hold Option/Alt while dropping to <b>link</b> it instead); you can also drop files from Finder/Explorer onto a tree folder to upload them there. The <b>“After drop”</b> button in the Tree toolbar decides what's open afterwards — click to switch between “go to target” (the default: open the folder you dropped into) and “stay in source” (keep the folder you dragged from open, handy when sorting many documents out of one folder). DMS remembers your choice.
             </div>
           </div>
 
@@ -1848,10 +1860,14 @@
 
           <div class="sub">
             <h3>5.10 PDF translation, saving it, and Original | Translation</h3>
-            <p>Open a PDF and click “Translate” at the top of the viewer: the right half shows the translation beside the original on the left, scrolling in sync. The dropdown at the top right offers “Fast (free)” (the default, no AI key needed), Gemini or DeepSeek; the latter two need a key configured first (chapter 8).</p>
+            <p>Open a PDF and click “Translate” at the top of the viewer. The original stays on the left; the right half shows a short setup panel — pick three things and click “Start translation”:</p>
             <ul class="plain">
-              <li><b>Save as PDF</b>: translates the whole document and saves a plain-text PDF in the same folder, named “original name + language”.</li>
-              <li><b>Save with layout</b>: puts each translation back where the original text was, keeping tables and columns (needs a PDF with selectable text; may take a minute or two).</li>
+              <li><b>From</b>: leave it on “Auto-detect”, or pick the document's language yourself for a more reliable result. The “⇄” button swaps From and To.</li>
+              <li><b>To</b>: the language to translate into — Simplified Chinese by default, with Traditional Chinese, English and about 50 others. Any pair works (e.g. Japanese → English).</li>
+              <li><b>Engine</b>: “Google Translate” (free and fast, no key), or AI translation with “AI · Gemini” / “AI · DeepSeek”, which reads the text in context and is usually more accurate but needs a key first (chapter 8). If the key is missing, the panel says so and offers an “Open AI settings” link.</li>
+              <li><b>Saved automatically</b>: DMS translates the whole document, keeps the original tables and columns, saves it in the original's folder as “original name + language”, and switches straight to Original | Translation. There is no separate “Save with layout” button any more. Long documents may take a minute or two.</li>
+              <li><b>Scanned PDFs</b> (no selectable text) are handled automatically: the text is recognised page by page and saved as a plain-text translation, one page per original page.</li>
+              <li><b>Already translated</b>: if a translation in that language exists, the panel offers “Open” or “Translate again”. Your language and engine choices are remembered.</li>
               <li><b>Original | Translation</b>: once a translation is saved, open either file and click this button for a side-by-side view that scrolls in sync.</li>
               <li><b>Edit the translation</b>: click “Edit” in the right pane to correct it page by page (paragraph by paragraph for layout translations); voice input is supported. Select text and click a colour in the palette to colour or highlight it, “Clear” removes the colour, then click “Save”.</li>
             </ul>
@@ -2402,7 +2418,7 @@
       <section class="chapter">
         <div class="chapter-body">
           <div class="faq-q">Gemini says “API quota exceeded” (429) — what now?</div>
-          <div class="faq-a">The free Gemini tier has daily (or per-minute) limits, and the message says roughly when it resets. Retry later, enable billing on the Google project, use another API key, or switch to DeepSeek; for translation you can pick “Fast (free)”.</div>
+          <div class="faq-a">The free Gemini tier has daily (or per-minute) limits, and the message says roughly when it resets. Retry later, enable billing on the Google project, use another API key, or switch to DeepSeek; for translation you can pick “Google Translate”.</div>
 
           <div class="faq-q">I forgot the app login password — what do I do?</div>
           <div class="faq-a">You can reset it by editing the local config file directly. It's located at <span class="mono">~/.pms_dms_config.json</span> on Mac, or <span class="mono">C:\Users\yourname\.pms_dms_config.json</span> on Windows. Open it in a plain text editor and set both the <span class="mono">password_hash</span> and <span class="mono">password_salt</span> fields to an empty string <span class="mono">""</span>, save, and restart DMS — password protection is removed. (This is the app login password, distinct from Section 15.2's "project password", which lives inside the project's own folder — the same edit-and-clear approach works on its config file there.)</div>
@@ -2432,7 +2448,7 @@
 
       <footer>
         <span>DMS.app — User Manual</span>
-        <span>Written for first-time users, compiled against the current release · rev. 2026-11-20</span>
+        <span>Written for first-time users, compiled against the current release · rev. 2026-11-21</span>
       </footer>
 
     </main>
@@ -2539,13 +2555,13 @@
     ['位置','地点','定位','gps','location','place'],
     ['日期','date'],
     ['重命名','改名','rename'],
-    ['移动','拖动','拖拽','move','drag'],
+    ['移动','拖动','拖拽','拖放','move','drag','drop'],
     ['链接','引用','link','reference','shortcut'],
     ['打印','print','printing'],
     ['扫描','scan','scanner'],
     ['条码','条形码','二维码','barcode','qr','qr code','qrcode'],
     ['文字识别','识别文字','ocr','text recognition'],
-    ['翻译','translate','translation'],
+    ['翻译','译文','translate','translation','language','语言'],
     ['ai','人工智能','智能','gemini','deepseek'],
     ['密钥','api key','apikey','api'],
     ['图表','趋势','chart','graph','trend','trends'],
